@@ -228,10 +228,6 @@ For further information on how hooks work and what are another ways of handling 
 
 If you ever wanted to implement storage integration right in your application - we got you covered. You've probably encountered problems with different libraries, especially if you wanted to integrate two or three providers, just to give your users a better choice. That's why `Storage.js` was created. Wrapping multiple libraries and creating simple abstraction layer for them allows you to easily add about 5 providers at once!
 
-## API Reference
-
-Will be published soon with better docs as well.
-
 ## Testing
 
 With our ~~100%~~ 70% (still improving!) code coverage, we believe it's important. You can run our test suites by a command `npm test`. To generate code coverage, use `gulp coverage`.
