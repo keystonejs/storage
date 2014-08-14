@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/grabbou/StorageAPI/issues"
   },
-  "homepage": "https://github.com/grabbou/StorageAPI"
+  "homepage": "https://github.com/grabbou/StorageAPI",
+  "dependencies": {
+    "pkgcloud": "^0.9.6",
+    "underscore": "^1.6.0"
+  }
 }

@@ -18,14 +18,16 @@
      * Initializes StorageClient, connection and saves config
      * Creates container/folder to use if necessary
      * @param config {Object} containing provider-specific data
+     * @param connection {Object} containing connection instance
      * @constructor
      */
-    function StorageClient (config) {
+    function StorageClient (config, connection) {
         if (this.constructor === StorageClient) {
             throw new Error('StorageClient: Cannot initialize abstract class');
         }
 
-        this.config = config;
+        this.__config = config;
+        this.__connection = connection;
     }
 
     StorageClient.prototype = {
@@ -73,10 +75,11 @@
 
         /**
          * Ensures that container/folder we want to use is defined and created
+         * @param callback {Function} to be invoked after completion
          * @private In most cases, invoked by constructor
          * @abstract
          */
-        __ensureContainer: function () {
+        __ensureContainer: function (callback) {
             throw new Error('Cannot invoke abstract method');
         }
 

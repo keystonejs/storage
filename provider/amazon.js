@@ -11,13 +11,40 @@
     'use strict';
 
     var util = require('util'),
-        StorageClient = require('./');
+        _ = require('underscore'),
+        StorageClient = require('./'),
+        pkgcloud = require('pkgcloud');
 
+    /**
+     * Amazon S3 constructor
+     * @param config
+     * @constructor
+     */
     function AmazonClient (config) {
-        AmazonClient.super_(this, config);
+
+        // Extending config with pkgcloud specific options
+        _.extend({
+            name: 'amazon'
+        }, config);
+
+        // Calling super constructor to finish initialization
+        AmazonClient.super_(this, config, pkgcloud.storage.createClient(config));
+
     }
 
+    // Inheriting interface & methods
     util.inherits(AmazonClient, StorageClient);
+
+    AmazonClient.prototype = {
+
+        /**
+         * {@inheritDoc}
+         */
+        __ensureContainer: function (callback) {
+            this.__connection.createContainer(this.__config, callback);
+        }
+
+    };
 
     module.exports = AmazonClient;
 
