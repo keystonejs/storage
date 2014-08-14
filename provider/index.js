@@ -16,6 +16,7 @@
 
     /**
      * Initializes StorageClient, connection and saves config
+     * Creates container/folder to use if necessary
      * @param config {Object} containing provider-specific data
      * @constructor
      */
@@ -54,10 +55,28 @@
          * Checks whether given file exists
          * @param filename {String} filename to check
          * @param callback {Function} to invoke after completing
-         * @return {Boolean} true if file exists, false otherwise
          * @abstract
          */
         exists: function (filename, callback) {
+            throw new Error('Cannot invoke abstract method');
+        },
+
+        /**
+         * Renames given file
+         * @param filename {String} filename to rename
+         * @param newName {String} new filename
+         * @param callback {Function} to be invoked after completion
+         */
+        rename: function (filename, newName, callback) {
+            throw new Error('Cannot invoke abstract method');
+        },
+
+        /**
+         * Ensures that container/folder we want to use is defined and created
+         * @private In most cases, invoked by constructor
+         * @abstract
+         */
+        __ensureContainer: function () {
             throw new Error('Cannot invoke abstract method');
         }
 
