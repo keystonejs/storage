@@ -3,10 +3,17 @@
  * Author: Mike Grabowski (@grabbou)
  * Created at: 14/08/2014
  * ========================================================================
- * Description: Main StorageAPI class. Resolves currently installed modules
+ * Description:
+ *
+ * Main StorageAPI class. Resolves currently installed modules
  * and returns them to end users. Although it uses process.env variables
  * to load current provider, we can pass options to obtain() method to get
  * different one.
+ *
+ * Available ways of configuration:
+ * 1) Generic -> process.env.storageConfig = {}
+ * 2) Multiple -> process.env.storageConfig[instance] = {}
+ *
  * ========================================================================
  */
 
@@ -46,7 +53,17 @@
                     throw new Error('Storage API: Provider ' + instance + ' is not an instance of StorageClient');
                 }
 
-                this.__providers[instance] = new Client();
+                if (!process.env.storageConfig) {
+                    throw new Error('Storage API: No configuration found. Please specify storage_config');
+                }
+
+                var config = process.env.storageConfig[instance] || process.env.storageConfig;
+
+                if (!config) {
+                    throw new Error('Storage API: No config found for ' + instance + '. Please check your files');
+                }
+
+                this.__providers[instance] = new Client(config);
 
             }
 
