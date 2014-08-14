@@ -9,4 +9,4 @@ process.env.storageConfig = {
 
 var client = Storage.obtain('amazon');
 
-console.log(client);
+console.log(client.upload());

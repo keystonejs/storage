@@ -13,8 +13,8 @@
     var util = require('util'),
         StorageClient = require('./');
 
-    function AmazonClient () {
-
+    function AmazonClient (config) {
+        AmazonClient.super_(this, config);
     }
 
     util.inherits(AmazonClient, StorageClient);

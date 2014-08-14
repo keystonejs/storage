@@ -9,12 +9,59 @@
  * ========================================================================
  */
 
+/* jshint unused: false */
+
 (function () {
     'use strict';
 
-    function StorageClient () {
+    /**
+     * Initializes StorageClient, connection and saves config
+     * @param config {Object} containing provider-specific data
+     * @constructor
+     */
+    function StorageClient (config) {
+        if (this.constructor === StorageClient) {
+            throw new Error('StorageClient: Cannot initialize abstract class');
+        }
 
+        this.config = config;
     }
+
+    StorageClient.prototype = {
+
+        /**
+         * Uploads given file
+         * @param file {Blob} file to save
+         * @param filename {String} name of the file
+         * @param callback {Function} to invoke after completing
+         * @abstract
+         */
+        upload: function (file, filename, callback) {
+            throw new Error('Cannot invoke abstract method');
+        },
+
+        /**
+         * Removes given file
+         * @param filename {String} filename to delete
+         * @param callback {Function} to invoke after completing
+         * @abstract
+         */
+        remove: function (filename, callback) {
+            throw new Error('Cannot invoke abstract method');
+        },
+
+        /**
+         * Checks whether given file exists
+         * @param filename {String} filename to check
+         * @param callback {Function} to invoke after completing
+         * @return {Boolean} true if file exists, false otherwise
+         * @abstract
+         */
+        exists: function (filename, callback) {
+            throw new Error('Cannot invoke abstract method');
+        }
+
+    };
 
     module.exports = StorageClient;
 
