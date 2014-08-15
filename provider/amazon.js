@@ -22,10 +22,11 @@ var util = require('util'),
  */
 function AmazonClient(config) {
 
-	// Extending config with pkgcloud specific options
-	config = _.extend({
-		provider: 'amazon'
-	}, config);
+	if (!config.provider) {
+		config = _.extend({
+			provider: 'amazon'
+		}, config);
+	}
 
 	// Calling super constructor to finish initialization
 	AmazonClient.super_.call(this, config, pkgcloud.storage.createClient(config));

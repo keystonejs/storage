@@ -19,6 +19,8 @@
 
 'use strict';
 
+var StorageClient = require('./provider');
+
 module.exports = {
 
 	__config: {},
@@ -56,10 +58,6 @@ module.exports = {
 
 			Client = require('./provider/' + instance);
 
-			if (!this.__isInstance(Client)) {
-				throw new Error('Storage API: Provider ' + instance + ' is not an instance of StorageClient');
-			}
-
 			if (!this.__config) {
 				throw new Error('Storage API: No configuration found. Please specify storage_config');
 			}
@@ -71,6 +69,11 @@ module.exports = {
 			}
 
 			this.__providers[instance] = new Client(config);
+
+			if (!(Client instanceof StorageClient)) {
+				throw new Error('Storage API: Provider ' + instance + ' is not an instance of StorageClient');
+			}
+
 
 		}
 
@@ -89,19 +92,6 @@ module.exports = {
 		} catch (error) {
 			return false;
 		}
-	},
-
-	/**
-	 * Checks whether loaded package is instance of StorageClient
-	 * Notice that check is performed before initialization
-	 * @param instance {Object}
-	 * @return {Boolean} true if valid, false otherwise
-	 * @private
-	 */
-	__isInstance: function (instance) {
-		if (!instance.super_) return false;
-		var text = Function.prototype.toString.call(instance.super_);
-		return text.match(/function (.*)\(/)[1] === 'StorageClient';
 	}
 
 };

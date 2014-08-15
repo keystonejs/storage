@@ -75,7 +75,7 @@ StorageClient.prototype = {
 	/**
 	 * Ensures that container/folder we want to use is defined and created
 	 * @param callback {Function} to be invoked after completion
-	 * @private In most cases, invoked by constructor
+	 * @private
 	 * @abstract
 	 * @access private
 	 */
