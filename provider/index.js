@@ -28,6 +28,12 @@
 
         this.__config = config;
         this.__connection = connection;
+
+        this.__ensureContainer(function (err) {
+            if (err) {
+                throw new Error('StorageClient: There was a problem with initialization. Details: '+err.message);
+            }
+        });
     }
 
     StorageClient.prototype = {

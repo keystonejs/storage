@@ -1,11 +1,14 @@
 var Storage = require('./index');
 
-
-process.env.storageConfig = {
+Storage.init({
     amazon: {
-
+        container: '',
+        key: '',
+        keyId: ''
     }
-};
+});
+
+console.log(process.env.storageConfig);
 
 var client = Storage.obtain('amazon');
 

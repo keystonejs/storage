@@ -11,8 +11,8 @@
  * different one.
  *
  * Available ways of configuration:
- * 1) Generic -> process.env.storageConfig = {}
- * 2) Multiple -> process.env.storageConfig[instance] = {}
+ * 1) Generic -> storageConfig = {}
+ * 2) Multiple -> storageConfig[instance] = {}
  *
  * ========================================================================
  */
@@ -22,11 +22,17 @@
 
     module.exports = {
 
+        __config: {},
+
         /**
          * Cached object array with all loaded providers (within application)
          * Shouldn't be called directly. Use obtain() instead
          */
         __providers: {},
+
+        init: function (config) {
+            this.__config = config;
+        },
 
         /**
          * Returns Storage client instance based on process.env.storage
@@ -53,11 +59,11 @@
                     throw new Error('Storage API: Provider ' + instance + ' is not an instance of StorageClient');
                 }
 
-                if (!process.env.storageConfig) {
+                if (!this.__config) {
                     throw new Error('Storage API: No configuration found. Please specify storage_config');
                 }
 
-                var config = process.env.storageConfig[instance] || process.env.storageConfig;
+                var config = this.__config[instance] || this.__config;
 
                 if (!config) {
                     throw new Error('Storage API: No config found for ' + instance + '. Please check your files');

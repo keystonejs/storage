@@ -23,12 +23,12 @@
     function AmazonClient (config) {
 
         // Extending config with pkgcloud specific options
-        _.extend({
-            name: 'amazon'
+        config = _.extend({
+            provider: 'amazon'
         }, config);
 
         // Calling super constructor to finish initialization
-        AmazonClient.super_(this, config, pkgcloud.storage.createClient(config));
+        AmazonClient.super_.call(this, config, pkgcloud.storage.createClient(config));
 
     }
 
@@ -41,7 +41,7 @@
          * {@inheritDoc}
          */
         __ensureContainer: function (callback) {
-            this.__connection.createContainer(this.__config, callback);
+            this.__connection.createContainer(this.__config.container, callback);
         }
 
     };
