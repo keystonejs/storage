@@ -10,6 +10,7 @@
 'use strict';
 
 var util = require('util'),
+	fs = require('fs'),
 	_ = require('underscore'),
 	StorageClient = require('./'),
 	pkgcloud = require('pkgcloud');
@@ -35,6 +36,35 @@ function AmazonClient(config) {
 util.inherits(AmazonClient, StorageClient);
 
 AmazonClient.prototype = {
+
+	/**
+	 * {@inheritDoc}
+	 */
+	upload: function (fileSrc, fileName, callback) {
+
+		fs.createReadStream(fileSrc).pipe(this.__connection.upload({
+			container: this.__config.container,
+			remote: fileName
+		}, callback));
+
+	},
+
+	/**
+	 * {@inheritDoc}
+	 */
+	remove: function (filename, callback) {
+		this.__connection.removeFile(this.__config.container, filename, callback);
+	},
+
+	/**
+	 * {@inheritDoc}
+	 */
+	download: function (filename, fileSrc, callback) {
+		this.__connection.download({
+			container: this.__config.container,
+			remote: filename
+		}, callback).pipe(fs.createWriteStream(fileSrc));
+	},
 
 	/**
 	 * {@inheritDoc}

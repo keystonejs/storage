@@ -39,12 +39,13 @@ StorageClient.prototype = {
 
 	/**
 	 * Uploads given file
-	 * @param file {Blob} file to save
+	 * @param fileSrc {String} path to the file
 	 * @param filename {String} name of the file
 	 * @param callback {Function} to invoke after completing
 	 * @abstract
+	 * @access public
 	 */
-	upload: function (file, filename, callback) {
+	upload: function (fileSrc, filename, callback) {
 		throw new Error('Cannot invoke abstract method');
 	},
 
@@ -53,28 +54,21 @@ StorageClient.prototype = {
 	 * @param filename {String} filename to delete
 	 * @param callback {Function} to invoke after completing
 	 * @abstract
+	 * @access public
 	 */
 	remove: function (filename, callback) {
 		throw new Error('Cannot invoke abstract method');
 	},
 
 	/**
-	 * Checks whether given file exists
-	 * @param filename {String} filename to check
-	 * @param callback {Function} to invoke after completing
+	 * Downloads given file
+	 * @param filename {String} to download
+	 * @param fileSrc {String} path to save the file
+	 * @param callback {Function} to invoke after downloading
 	 * @abstract
+	 * @access public
 	 */
-	exists: function (filename, callback) {
-		throw new Error('Cannot invoke abstract method');
-	},
-
-	/**
-	 * Renames given file
-	 * @param filename {String} filename to rename
-	 * @param newName {String} new filename
-	 * @param callback {Function} to be invoked after completion
-	 */
-	rename: function (filename, newName, callback) {
+	download: function (filename, fileSrc, callback) {
 		throw new Error('Cannot invoke abstract method');
 	},
 
@@ -83,6 +77,7 @@ StorageClient.prototype = {
 	 * @param callback {Function} to be invoked after completion
 	 * @private In most cases, invoked by constructor
 	 * @abstract
+	 * @access private
 	 */
 	__ensureContainer: function (callback) {
 		throw new Error('Cannot invoke abstract method');
