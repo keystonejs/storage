@@ -7,7 +7,7 @@ StorageAPI is node.js library that abstract away differences between multiple st
 
 ## Why?
 
-If you ever wanted implement Storage API right in your application giving other contributors and developers easy access to file system - that's for you. Write simple & portable plugins that work with every provider possible (Amazon/Azure/FTP/SFTP and so on).
+If you ever wanted to implement Storage API right in your application giving other contributors and developers an easy access to file system - that's for you. Write simple & portable plugins that work with every provider possible (Amazon/Azure/FTP/SFTP and so on).
 
 ## Initialization
 
@@ -27,12 +27,13 @@ It can be either multidimensional array containing provider name as a key (usefu
 ```js
 var Storage = require('storage-api');
 Storage.init({
- 	amazon: {
  		container: '',
  		key: '',
  		keyId: ''
 });
 ```
+
+Every storage provider requires slightly different parameters. See sections below for further information.
 
 ## Usage
 
