@@ -19,6 +19,8 @@ var AzureClient = function AzureClient(config) {
 		provider: 'azure'
 	}, config);
 
+	this.__ensureValid(['container', 'storageAccount', 'storageAccessKey'], config);
+
 	AzureClient.super_.call(this, config);
 
 };
