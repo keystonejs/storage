@@ -48,3 +48,9 @@ client.upload(...);
 ```
 
 `Obtain()` method can accept provider to retrieve (`String`) as a parameter. In case it's undefined, method looks for `process.env.storage` for default value.
+
+## Contributing
+
+Feel free to submit an issue or pull-request. Keep in mind that we follow [Airbnb style guide](https://github.com/airbnb/javascript) except the fact, that we use 1 tab over 2/4 spaces. This originates from KeystoneJS which that project is a part of.
+
+To add your own provider, simply take a look at `AmazonClient` class for further reference. Detailed docs are coming!
