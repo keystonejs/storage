@@ -13,7 +13,7 @@ var util = require('util'),
 	_ = require('underscore'),
 	AmazonClient = require('./amazon');
 
-function AzureClient (config) {
+var AzureClient = function AzureClient(config) {
 
 	config = _.extend({
 		provider: 'azure'
@@ -21,7 +21,7 @@ function AzureClient (config) {
 
 	AzureClient.super_.call(this, config);
 
-}
+};
 
 util.inherits(AzureClient, AmazonClient);
 

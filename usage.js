@@ -1,3 +1,6 @@
+// Load env variables
+require('dotenv').load();
+
 // Simple initialization
 var Storage = require('./index');
 

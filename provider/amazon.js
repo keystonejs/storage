@@ -20,62 +20,49 @@ var util = require('util'),
  * @param config
  * @constructor
  */
-function AmazonClient(config) {
+var AmazonClient = function AmazonClient(config) {
 
-	if (!config.provider) {
+	// Only apply for AmazonClient
+	// Allows to extend that class by other providers that
+	// use pkgcloud (Azure/HP/Rackspace)
+	if(this.constructor === AmazonClient) {
 		config = _.extend({
 			provider: 'amazon'
 		}, config);
+
+		this.__ensureValid(['key', 'keyId', 'container'], config);
 	}
 
 	// Calling super constructor to finish initialization
 	AmazonClient.super_.call(this, config, pkgcloud.storage.createClient(config));
 
-}
+};
 
 // Inheriting interface & methods
 util.inherits(AmazonClient, StorageClient);
 
-AmazonClient.prototype = {
+/**
+ * {@inheritDoc}
+ */
+AmazonClient.prototype.upload = function (fileSrc, fileName, callback) {
+	fs.createReadStream(fileSrc).pipe(this.__connection.upload({
+		container: this.__config.container,
+		remote: fileName
+	}, callback));
+};
 
-	/**
-	 * {@inheritDoc}
-	 */
-	upload: function (fileSrc, fileName, callback) {
+/**
+ * {@inheritDoc}
+ */
+AmazonClient.prototype.remove = function (filename, callback) {
+	this.__connection.removeFile(this.__config.container, filename, callback);
+};
 
-		fs.createReadStream(fileSrc).pipe(this.__connection.upload({
-			container: this.__config.container,
-			remote: fileName
-		}, callback));
-
-	},
-
-	/**
-	 * {@inheritDoc}
-	 */
-	remove: function (filename, callback) {
-		this.__connection.removeFile(this.__config.container, filename, callback);
-	},
-
-	/**
-	 * {@inheritDoc}
-	 */
-	download: function (filename, fileSrc, callback) {
-		this.__connection.download({
-			container: this.__config.container,
-			remote: filename
-		}, callback).pipe(fs.createWriteStream(fileSrc));
-	},
-
-	/**
-	 * {@inheritDoc}
-	 */
-	__ensureContainer: function (callback) {
-		this.__connection.createContainer(this.__config.container, callback);
-	}
-
+/**
+ * {@inheritDoc}
+ */
+AmazonClient.prototype.__ensureContainer = function (callback) {
+	this.__connection.createContainer(this.__config.container, callback);
 };
 
 module.exports = AmazonClient;
-
-

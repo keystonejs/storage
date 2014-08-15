@@ -17,10 +17,10 @@
  * Initializes StorageClient, connection and saves config
  * Creates container/folder to use if necessary
  * @param config {Object} containing provider-specific data
- * @param connection {Object} containing connection instance
+ * @param connection {Object} containing reference to connection method
  * @constructor
  */
-function StorageClient(config, connection) {
+var StorageClient = function StorageClient(config, connection) {
 	if (this.constructor === StorageClient) {
 		throw new Error('StorageClient: Cannot initialize abstract class');
 	}
@@ -33,7 +33,7 @@ function StorageClient(config, connection) {
 			throw new Error('StorageClient: There was a problem with initialization. Details: ' + err.message);
 		}
 	});
-}
+};
 
 StorageClient.prototype = {
 
@@ -75,12 +75,26 @@ StorageClient.prototype = {
 	/**
 	 * Ensures that container/folder we want to use is defined and created
 	 * @param callback {Function} to be invoked after completion
-	 * @private
+	 * @public
 	 * @abstract
-	 * @access private
+	 * @access protected
 	 */
 	__ensureContainer: function (callback) {
 		throw new Error('Cannot invoke abstract method');
+	},
+
+	/**
+	 * Checks whether config passed is valid
+	 * @param schema
+	 * @param config
+	 * @access protected
+	 */
+	__ensureValid: function (schema, config) {
+		schema.forEach(function (key) {
+			if (!config.hasOwnProperty(key)) {
+				throw new Error('StorageClient: Missing argument for ' + key + '. Check the docs for further assistance');
+			}
+		});
 	}
 
 };

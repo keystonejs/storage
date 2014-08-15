@@ -50,16 +50,14 @@ module.exports = {
 			throw new Error('Storage API: Did you forgot to specify provider?');
 		}
 
+		if (!this.__config) {
+			throw new Error('Storage API: No configuration found. Please specify storage_config');
+		}
+
 		if (!this.__providers[instance]) {
 
 			if (!this.__exists(instance)) {
 				throw new Error('Storage API: Provider ' + instance + ' is not yet supported');
-			}
-
-			Client = require('./provider/' + instance);
-
-			if (!this.__config) {
-				throw new Error('Storage API: No configuration found. Please specify storage_config');
 			}
 
 			config = this.__config[instance] || this.__config;
@@ -68,12 +66,15 @@ module.exports = {
 				throw new Error('Storage API: No config found for ' + instance + '. Please check your files');
 			}
 
-			this.__providers[instance] = new Client(config);
+			Client = require('./provider/' + instance);
+
+			Client = new Client(config);
 
 			if (!(Client instanceof StorageClient)) {
 				throw new Error('Storage API: Provider ' + instance + ' is not an instance of StorageClient');
 			}
 
+			this.__providers[instance] = Client;
 
 		}
 
