@@ -2,7 +2,7 @@
 require('dotenv').load();
 
 // Simple initialization
-var Storage = require('./.');
+var Storage = require('../lib');
 
 Storage.init({
 	amazon: {
@@ -16,4 +16,10 @@ Storage.init({
 var client = Storage.obtain('amazon');
 
 // As long as not implemented, will raise an error here
-console.log(client.upload());
+client.upload('../LICENSE', 'license.md', function (err) {
+	if (err) {
+		console.log(err.message);
+	} else {
+		console.log('Uploaded');
+	}
+});
