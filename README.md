@@ -7,7 +7,7 @@ StorageAPI is node.js library that abstract away differences between multiple st
 
 ## Why?
 
-If you ever wanted to implement Storage API right in your application giving other contributors and developers an easy access to file system - that's for you. Write simple & portable plugins that work with every provider possible (Amazon/Azure/FTP/SFTP and so on).
+If you ever wanted to implement Storage API right in your application giving other contributors and developers an easy access to file system - that's for you. Write simple & portable plugins that work with any provider possible (Amazon/Azure/FTP/SFTP and so on).
 
 ## Initialization
 
