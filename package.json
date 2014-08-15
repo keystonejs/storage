@@ -1,8 +1,8 @@
 {
-  "name": "StorageAPI",
+  "name": "storage-api",
   "version": "0.0.1",
   "description": "Storage API, written entirely in Javascript, allows you to integrate any storage provider within few, single lines.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
