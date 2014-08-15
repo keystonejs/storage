@@ -2,7 +2,7 @@
 require('dotenv').load();
 
 // Simple initialization
-var Storage = require('./index');
+var Storage = require('./.');
 
 Storage.init({
 	amazon: {
