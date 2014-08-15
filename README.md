@@ -47,4 +47,4 @@ var client = Storage.obtain();
 client.upload(...);
 ```
 
-`Obtain()` method can accept provider to retrieve (`String`) as parameter. In case not specified, method will look for `process.env.storage` for default value.
+`Obtain()` method can accept provider to retrieve (`String`) as a parameter. In case it's undefined, method looks for `process.env.storage` for default value.
