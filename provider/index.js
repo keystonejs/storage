@@ -11,86 +11,84 @@
 
 /* jshint unused: false */
 
-(function () {
-    'use strict';
+'use strict';
 
-    /**
-     * Initializes StorageClient, connection and saves config
-     * Creates container/folder to use if necessary
-     * @param config {Object} containing provider-specific data
-     * @param connection {Object} containing connection instance
-     * @constructor
-     */
-    function StorageClient (config, connection) {
-        if (this.constructor === StorageClient) {
-            throw new Error('StorageClient: Cannot initialize abstract class');
-        }
+/**
+ * Initializes StorageClient, connection and saves config
+ * Creates container/folder to use if necessary
+ * @param config {Object} containing provider-specific data
+ * @param connection {Object} containing connection instance
+ * @constructor
+ */
+function StorageClient(config, connection) {
+	if (this.constructor === StorageClient) {
+		throw new Error('StorageClient: Cannot initialize abstract class');
+	}
 
-        this.__config = config;
-        this.__connection = connection;
+	this.__config = config;
+	this.__connection = connection;
 
-        this.__ensureContainer(function (err) {
-            if (err) {
-                throw new Error('StorageClient: There was a problem with initialization. Details: '+err.message);
-            }
-        });
-    }
+	this.__ensureContainer(function (err) {
+		if (err) {
+			throw new Error('StorageClient: There was a problem with initialization. Details: ' + err.message);
+		}
+	});
+}
 
-    StorageClient.prototype = {
+StorageClient.prototype = {
 
-        /**
-         * Uploads given file
-         * @param file {Blob} file to save
-         * @param filename {String} name of the file
-         * @param callback {Function} to invoke after completing
-         * @abstract
-         */
-        upload: function (file, filename, callback) {
-            throw new Error('Cannot invoke abstract method');
-        },
+	/**
+	 * Uploads given file
+	 * @param file {Blob} file to save
+	 * @param filename {String} name of the file
+	 * @param callback {Function} to invoke after completing
+	 * @abstract
+	 */
+	upload: function (file, filename, callback) {
+		throw new Error('Cannot invoke abstract method');
+	},
 
-        /**
-         * Removes given file
-         * @param filename {String} filename to delete
-         * @param callback {Function} to invoke after completing
-         * @abstract
-         */
-        remove: function (filename, callback) {
-            throw new Error('Cannot invoke abstract method');
-        },
+	/**
+	 * Removes given file
+	 * @param filename {String} filename to delete
+	 * @param callback {Function} to invoke after completing
+	 * @abstract
+	 */
+	remove: function (filename, callback) {
+		throw new Error('Cannot invoke abstract method');
+	},
 
-        /**
-         * Checks whether given file exists
-         * @param filename {String} filename to check
-         * @param callback {Function} to invoke after completing
-         * @abstract
-         */
-        exists: function (filename, callback) {
-            throw new Error('Cannot invoke abstract method');
-        },
+	/**
+	 * Checks whether given file exists
+	 * @param filename {String} filename to check
+	 * @param callback {Function} to invoke after completing
+	 * @abstract
+	 */
+	exists: function (filename, callback) {
+		throw new Error('Cannot invoke abstract method');
+	},
 
-        /**
-         * Renames given file
-         * @param filename {String} filename to rename
-         * @param newName {String} new filename
-         * @param callback {Function} to be invoked after completion
-         */
-        rename: function (filename, newName, callback) {
-            throw new Error('Cannot invoke abstract method');
-        },
+	/**
+	 * Renames given file
+	 * @param filename {String} filename to rename
+	 * @param newName {String} new filename
+	 * @param callback {Function} to be invoked after completion
+	 */
+	rename: function (filename, newName, callback) {
+		throw new Error('Cannot invoke abstract method');
+	},
 
-        /**
-         * Ensures that container/folder we want to use is defined and created
-         * @param callback {Function} to be invoked after completion
-         * @private In most cases, invoked by constructor
-         * @abstract
-         */
-        __ensureContainer: function (callback) {
-            throw new Error('Cannot invoke abstract method');
-        }
+	/**
+	 * Ensures that container/folder we want to use is defined and created
+	 * @param callback {Function} to be invoked after completion
+	 * @private In most cases, invoked by constructor
+	 * @abstract
+	 */
+	__ensureContainer: function (callback) {
+		throw new Error('Cannot invoke abstract method');
+	}
 
-    };
+};
 
-    module.exports = StorageClient;
+module.exports = StorageClient;
 
-})();
