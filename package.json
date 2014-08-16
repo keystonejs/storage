@@ -4,7 +4,7 @@
   "description": "Storage API, written entirely in Javascript, allows you to integrate any storage provider within few, single lines.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha ./test -R spec"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,14 @@
     "underscore": "^1.6.0"
   },
   "devDependencies": {
-    "dotenv": "^0.4.0"
+    "chai": "^1.9.1",
+    "dotenv": "^0.4.0",
+    "gulp": "^3.8.7",
+    "gulp-coverage": "^0.1.24",
+    "gulp-jshint": "^1.8.4",
+    "gulp-mocha": "^1.0.0",
+    "gulp-rimraf": "^0.1.0",
+    "mocha": ">= 1.20 < 2",
+    "sinon": "^1.10.3"
   }
 }
