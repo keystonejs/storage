@@ -29,8 +29,7 @@ describe('StorageClient', function () {
 
 	describe('#interface', function () {
 
-		var TestObject = function TestObject() {
-			},
+		var TestObject = function TestObject() {},
 			testObject;
 
 		inherits(TestObject, StorageClient);
