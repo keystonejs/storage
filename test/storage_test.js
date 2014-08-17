@@ -7,7 +7,11 @@
 
 'use strict';
 
-var expect = require('chai').expect;
+/* jshint expr:true */
+
+var expect = require('chai').expect,
+	stub = require('sinon').stub,
+	spy = require('sinon').spy;
 
 describe('Storage', function () {
 
@@ -26,6 +30,7 @@ describe('Storage', function () {
 
 		beforeEach(function () {
 			Storage.init();
+			Storage.__providers = {};
 		});
 
 		it('should throw an error when no provider specified', function () {
@@ -43,6 +48,22 @@ describe('Storage', function () {
 			expect(function () {
 				Storage.obtain('this.doesnt.exists');
 			}).to.throw(/is not yet supported/);
+		});
+
+		it('should cache module instance instead of recreating', function () {
+			var storageSpy = spy(require('../lib/storage'), 'call');
+			stub(require('../lib/storage/amazon').prototype, '__ensureContainer').callsArgWith(0, null);
+
+			Storage.init({
+				key: '',
+				keyId: '',
+				container: ''
+			});
+
+			Storage.obtain('amazon');
+			Storage.obtain('amazon');
+
+			expect(storageSpy.calledOnce).to.be.true;
 		});
 
 	});
