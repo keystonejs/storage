@@ -11,7 +11,8 @@
 
 var expect = require('chai').expect,
 	stub = require('sinon').stub,
-	spy = require('sinon').spy;
+	spy = require('sinon').spy,
+	mockery = require('mockery');
 
 describe('Storage', function () {
 
@@ -64,6 +65,18 @@ describe('Storage', function () {
 			Storage.obtain('amazon');
 
 			expect(storageSpy.calledOnce).to.be.true;
+
+			storageSpy.restore();
+		});
+
+		it('should throw an error when provider does not extend StorageClient', function () {
+			mockery.enable();
+			mockery.registerMock('./storage/amazon', function () {});
+			Storage.init({});
+			expect(function () {
+				Storage.obtain('amazon');
+			}).to.throw(/not an instance of StorageClient/);
+			mockery.disable();
 		});
 
 	});
