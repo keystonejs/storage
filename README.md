@@ -65,4 +65,4 @@ You are welcome! Feel free to submit bugs, create issues and do pull requests. T
 
 ## License
 
-Project licensed under MIT (*See LICENSE for further details)
+Project licensed under MIT (*See LICENSE for further details*)
