@@ -3,6 +3,10 @@ Storage.js
 
 Storage.js is a NodeJS library that standarizes common available via `npm` libraries like `pkgcloud` and abstracts away differences (especially within callbacks). Just write a simple implementation and leave configuration up to your users.
 
+## Installation
+
+*Note: Work in progress*. Although it's still work in progress, feel free to fork or do the custom install via `npm`. Further details will be published soon.
+
 ## Configuration
 
 After requiring for the first time, invoke `init` method by passing configuration object.
@@ -47,10 +51,6 @@ client.upload(...);
 
 If you ever wanted to implement storage integration right in your application - we got you covered. You've probably encountered problems with different libraries, especially if you wanted to integrate two or three providers, just to give your users a better choice. That's why `Storage.js` was created. Wrapping multiple libraries and creating simple abstraction layer for them allows you to easily add about 5 providers at once!
 
-## Installation
-
-*Note: Work in progress*. Although it's still work in progress, feel free to fork or do the custom install via `npm`. Further details will be published soon.
-
 ## API Reference
 
 Will be published soon as a 'Readme.md' file under `lib` dir.
@@ -65,4 +65,4 @@ You are welcome! Feel free to submit bugs, create issues and do pull requests. T
 
 ## License
 
-Project licensed under MIT (*See LICENSE.MD for further details)
+Project licensed under MIT (*See LICENSE for further details)
