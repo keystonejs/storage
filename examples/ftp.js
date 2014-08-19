@@ -14,5 +14,5 @@ Storage.init({
 	}
 });
 
-// Because no process.env.storage is specified, we use 'amazon' for now
+// Because no process.env.storage is specified, we use 'ftp' for now
 var ftp = Storage.obtain('ftp');
