@@ -8,7 +8,7 @@ before_script:
 - npm install -g istanbul
 - npm install -g mocha
 - npm install -g codeclimate-test-reporter
-- npm install node-coveralls
+- npm install coveralls
 
 after_success:
   - istanbul cover _mocha -- -R spec ./test/*.js
