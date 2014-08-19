@@ -13,6 +13,8 @@ Storage.js is a NodeJS library that standarizes common available via `npm` libra
 * To be included soon:
 	* FTP
 	* SFTP
+	* Local disk
+	* MongoDB
 
 > More providers will be added by community requests (feel free to create an issue). 
 
