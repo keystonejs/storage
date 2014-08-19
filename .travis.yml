@@ -12,3 +12,5 @@ before_script:
 after_success:
   - istanbul cover _mocha -- -R spec ./test/*.js
   - codeclimate < ./coverage/lcov.info
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - rm -rf ./coverage
