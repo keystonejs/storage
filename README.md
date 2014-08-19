@@ -3,6 +3,19 @@ Storage.js [![Travis-Ci](https://travis-ci.org/grabbou/StorageAPI.svg)](https://
 
 Storage.js is a NodeJS library that standarizes common available via `npm` libraries like `pkgcloud` and abstracts away differences (especially within callbacks). Just write a simple implementation and leave configuration up to your users.
 
+* Available storage providers:
+	* Rackspace
+	* Amazon
+	* Azure
+	* Openshift
+	* HP
+	
+* To be included soon:
+	* FTP
+	* SFTP
+
+> More providers will be added by community requests (feel free to create an issue). 
+
 ## Installation
 
 *Note: Work in progress*. Although it's still work in progress, feel free to fork or do the custom install via `npm`. Further details will be published soon.
@@ -62,6 +75,11 @@ With our 100% code coverage, we believe they are important. To run them by yours
 ## Contributors
 
 You are welcome! Feel free to submit bugs, create issues and do pull requests. Take a look at our Api reference located above and dive into the project. Feels like we are missing another provider? Just do it!
+
+## Thanks
+
+Special thanks to maintainers of:
+- [`pkgcloud`](https://github.com/pkgcloud/pkgcloud) for providing cloud integrations for Azure, HP, Rackspace, OpenShift and Amazon.
 
 ## License
 
