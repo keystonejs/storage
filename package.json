@@ -1,5 +1,5 @@
 {
-  "name": "storage-api",
+  "name": "storage",
   "version": "0.0.1",
   "description": "Storage API, written entirely in Javascript, allows you to integrate any storage provider within few, single lines.",
   "main": "lib/index.js",
