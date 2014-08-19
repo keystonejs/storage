@@ -15,4 +15,12 @@ Storage.init({
 });
 
 // Because no process.env.storage is specified, we use 'ftp' for now
-Storage.obtain('ftp');
+var ftp = Storage.obtain('ftp');
+
+ftp.upload('../LICENSE', 'LICENSE.MD', function (err) {
+	if (err) {
+		console.log(err);
+	} else {
+		console.log('Uploaded');
+	}
+});
