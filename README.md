@@ -1,4 +1,4 @@
-Storage.js [![Travis-Ci](https://travis-ci.org/grabbou/StorageAPI.svg)](https://travis-ci.org/grabbou/StorageAPI)&nbsp;[![Code Climate](https://codeclimate.com/github/grabbou/StorageAPI/badges/gpa.svg)](https://codeclimate.com/github/grabbou/StorageAPI)&nbsp;[![Test Coverage](https://codeclimate.com/github/grabbou/StorageAPI/badges/coverage.svg)](https://codeclimate.com/github/grabbou/StorageAPI)&nbsp;[![Dependency Status](https://gemnasium.com/grabbou/StorageAPI.svg)](https://gemnasium.com/grabbou/StorageAPI)
+Storage.js [![Travis-Ci](https://travis-ci.org/keystonejs/storage.js.svg)](https://travis-ci.org/grabbou/StorageAPI)&nbsp;[![Code Climate](https://codeclimate.com/github/keystonejs/storage.js/badges/gpa.svg)](https://codeclimate.com/github/grabbou/StorageAPI)&nbsp;[![Test Coverage](https://codeclimate.com/github/keystonejs/storage.js/badges/coverage.svg)](https://codeclimate.com/github/grabbou/StorageAPI)&nbsp;[![Dependency Status](https://gemnasium.com/keystonejs/storage.js.svg)](https://gemnasium.com/grabbou/StorageAPI)
 ==========
 
 Storage.js is a NodeJS library that standarizes common available via `npm` libraries like `pkgcloud` and abstracts away differences (especially within callbacks). Just write a simple implementation and leave configuration up to your users.
@@ -27,7 +27,7 @@ Storage.js is a NodeJS library that standarizes common available via `npm` libra
 After requiring for the first time, invoke `init` method by passing configuration object.
 
 ```js
-var Storage = require('storage-api');
+var Storage = require('storage');
 Storage.init({
 	amazon: {
 		container: '',
@@ -38,7 +38,7 @@ Storage.init({
 It can be either multidimensional array containing provider name as a key (useful when you are going to use multiple providers) as shown above or default, global config, like the one below:
 
 ```js
-var Storage = require('storage-api');
+var Storage = require('storage');
 Storage.init({
  		container: '',
  		key: '',
@@ -53,7 +53,7 @@ Every storage provider requires slightly different parameters. See sections belo
 To get an instance of current client, simply call `obtain()` on your `Storage` object.
 
 ```js
-var Storage = require('storage-api');
+var Storage = require('storage');
 
 var client = Storage.obtain();
 
