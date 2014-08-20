@@ -5,7 +5,7 @@ var Storage = require('../lib'),
 Storage.init({
 	custom: {
 		provider: Storage.Providers.LocalSystem,
-		path: 'practical'
+		container: 'practical'
 	}
 });
 
@@ -20,12 +20,12 @@ async.waterfall([
 		});
 	},
 	function downloadFile(callback) {
-		client.download('license.md', 'practical/license2.md', function (err) {
+		client.download('testing/license.md', 'license2.md', function (err) {
 			callback(err);
 		});
 	},
 	function removeFile(callback) {
-		client.remove('license2.md', function (err) {
+		client.remove('testing/license.md', function (err) {
 			callback(err);
 		});
 	}
