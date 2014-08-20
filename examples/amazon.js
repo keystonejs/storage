@@ -6,6 +6,7 @@ var Storage = require('../lib');
 
 Storage.init({
 	amazon: {
+		provider: Storage.Providers.AmazonS3,
 		container: process.env.TEST_CONTAINER,
 		key: process.env.TEST_KEY,
 		keyId: process.env.TEST_KEYID

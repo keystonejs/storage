@@ -3,13 +3,14 @@ var Storage = require('../lib'),
 	async = require('async');
 
 Storage.init({
-	local: {
+	custom: {
+		provider: Storage.Providers.LocalSystem,
 		path: 'practical'
 	}
 });
 
 // Because no process.env.storage is specified, we use 'amazon' for now
-var client = Storage.obtain('local');
+var client = Storage.get('custom');
 
 async.waterfall([
 	function uploadFile(callback) {
