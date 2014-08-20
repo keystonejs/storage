@@ -56,9 +56,7 @@ Storage.add('otherProvider', {...});
 Storage.get('myProvider');
 ```
 
-Configuration object should always contain `provider` key with either `Storage.Providers` brought to you by default or a custom package from npm attached via e.g. `require()`.
-
-`Obtain()` method can accept provider to retrieve (`String`) as a parameter. In case it's undefined, method looks for `process.env.storage` for default value.
+Configuration object should always contain `provider` key with either `Storage.Providers` brought to you by default or a custom package from npm attached via e.g. `require()`. After that, include other, provider-specific keys.
 
 ## Motivation
 
