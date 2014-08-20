@@ -17,51 +17,48 @@ describe('Storage', function () {
 
 	var Storage = require('../lib');
 
+	beforeEach(function () {
+		Storage.init({});
+		Storage._cache = {};
+	});
+
 	describe('#init', function () {
 
-		it('must correctly set up config variables', function () {
+		it('it must set up correctly variables', function () {
 			Storage.init('config');
 			expect(Storage._config).to.equal('config');
 		});
 
 	});
 
+	describe('#add', function () {
+
+		it('it must set up correctly variables', function () {
+			Storage.add('amazon', 'config');
+			expect(Storage._config.amazon).to.equal('config');
+		});
+
+	});
+
 	describe('#get', function () {
 
-		beforeEach(function () {
-			Storage.init({});
-			Storage._cache = {};
+		it('should throw an error when no instance specified', function () {
+			expect(Storage.get).to.throw(/forgot to specify instance/);
 		});
 
-		it('should throw an error when no provider specified', function () {
-			expect(Storage.get).to.throw(/forgot to specify/);
-		});
-
-		it('should throw an error when no config specified', function () {
+		it('should throw an error when no config specified for an instance', function () {
 			expect(function () {
 				Storage.get('amazon');
 			}).to.throw(/you forgot to declare it/);
 		});
 
-		it('should cache module instance instead of recreating', function () {
-			var storageSpy = spy(require('../lib/storage'), 'call');
-			stub(require('../lib/storage/amazon').prototype, '__ensureContainer').callsArgWith(0, null);
-
+		it('should throw an error when no provider specified for an instance', function () {
 			Storage.init({
-				amazon: {
-					provider: Storage.Providers.AmazonS3,
-					key: '',
-					keyId: '',
-					container: ''
-				}
+				amazon: {}
 			});
-
-			Storage.get('amazon');
-			Storage.get('amazon');
-
-			expect(storageSpy.calledOnce).to.be.true;
-
-			storageSpy.restore();
+			expect(function () {
+				Storage.get('amazon');
+			}).to.throw(/is not specified/);
 		});
 
 		it('should throw an error when provider does not extend StorageClient', function () {
@@ -80,5 +77,27 @@ describe('Storage', function () {
 
 	});
 
-})
-;
+	describe('#_cache', function () {
+
+		it('should cache module instance instead of recreating', function () {
+			var constructor = spy(Storage.Providers, 'AmazonS3');
+			stub(Storage.Providers.AmazonS3.prototype, '__ensureContainer').callsArgWith(0, null);
+
+			Storage.init({
+				amazon: {
+					provider: Storage.Providers.AmazonS3,
+					key: '',
+					keyId: '',
+					container: ''
+				}
+			});
+
+			Storage.get('amazon');
+			Storage.get('amazon');
+
+			expect(constructor.calledOnce).to.be.true;
+		});
+
+	});
+
+});
