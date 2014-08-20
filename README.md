@@ -25,41 +25,38 @@ Storage.js is a NodeJS library that standarizes common available via `npm` libra
 
 ## Configuration
 
-After requiring for the first time, invoke `init` method by passing configuration object.
+After requiring for the first time, invoke either `init` or `add` method by passing configuration object.
 
 ```js
 var Storage = require('storage');
+
+// #1 option
 Storage.init({
-	amazon: {
+	myProvider: {
+		provider: Storage.Providers.AmazonS3
 		container: '',
 		key: '',
 		keyId: ''
+	},
+	// other providers you need in your app
+	{...}
 });
-```
-It can be either multidimensional array containing provider name as a key (useful when you are going to use multiple providers) as shown above or default, global config, like the one below:
 
-```js
-var Storage = require('storage');
-Storage.init({
- 		container: '',
- 		key: '',
- 		keyId: ''
+// #2 option
+Storage.add('myProvider', {
+	provider: Storage.Providers.AmazonS3
+	container: '',
+	key: '',
+	keyId: ''
 });
+
+// Call as many times as you want
+Storage.add('otherProvider', {...});
+
+Storage.get('myProvider');
 ```
 
-Every storage provider requires slightly different parameters. See sections below for further information.
-
-## Usage
-
-To get an instance of current client, simply call `obtain()` on your `Storage` object.
-
-```js
-var Storage = require('storage');
-
-var client = Storage.obtain();
-
-client.upload(...);
-```
+Configuration object should always contain `provider` key with either `Storage.Providers` brought to you by default or a custom package from npm attached via e.g. `require()`.
 
 `Obtain()` method can accept provider to retrieve (`String`) as a parameter. In case it's undefined, method looks for `process.env.storage` for default value.
 
