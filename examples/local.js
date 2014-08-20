@@ -14,7 +14,8 @@ var client = Storage.get('custom');
 
 async.waterfall([
 	function uploadFile(callback) {
-		client.upload('../LICENSE', 'license.md', function (err) {
+		client.upload('../LICENSE', 'testing/license.md', function (err, res) {
+			console.log(res);
 			callback(err);
 		});
 	},
