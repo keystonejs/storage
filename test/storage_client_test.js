@@ -13,7 +13,7 @@ var expect = require('chai').expect,
 
 describe('StorageClient', function () {
 
-	var StorageClient = require('../lib/provider/client');
+	var StorageClient = require('../lib/client');
 
 	describe('#constructor', function () {
 
