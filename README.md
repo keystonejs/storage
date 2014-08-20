@@ -9,9 +9,9 @@ Storage.js is a NodeJS library that standarizes common available via `npm` libra
 	* Azure
 	* Openshift
 	* HP
+	* Local disk
 	
 * To be included soon:
-	* Local disk
 	* MongoDB
 
 * After initial release
