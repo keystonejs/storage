@@ -1,5 +1,6 @@
 // Simple initialization
-var Storage = require('../lib');
+var Storage = require('../lib'),
+	async = require('async');
 
 Storage.init({
 	local: {
@@ -10,26 +11,30 @@ Storage.init({
 // Because no process.env.storage is specified, we use 'amazon' for now
 var client = Storage.obtain('local');
 
-client.upload('../LICENSE', 'license.md', function (err) {
+async.waterfall([
+	function uploadFile(callback) {
+		client.upload('../LICENSE', 'license.md', function (err) {
+			callback(err);
+		});
+	},
+	function downloadFile(callback) {
+		client.download('license.md', 'practical/license2.md', function (err) {
+			callback(err);
+		});
+	},
+	function removeFile(callback) {
+		client.remove('license2.md', function (err) {
+			callback(err);
+		});
+	}
+], function (err) {
 	if (err) {
-		console.log(err.message);
+		console.log('Error - ', err);
 	} else {
-		console.log('Uploaded');
+		console.log('Successful');
 	}
 });
 
-client.download('license.md', 'practical/license2.md', function (err) {
-	if (err) {
-		console.log(err.message);
-	} else {
-		console.log('Downloaded');
-	}
-});
 
-client.remove('license2.md', function (err) {
-	if (err) {
-		console.log(err.message);
-	} else {
-		console.log('Removed');
-	}
-});
+
+
