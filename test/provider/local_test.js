@@ -64,11 +64,11 @@ describe('LocalSystem', function () {
 		});
 
 		it('should return valid callback', function (next) {
-			Storage.get('localStorage').upload('LICENSE', 'nested/nested2/license.md', function (err, callback) {
+			Storage.get('localStorage').upload('LICENSE', 'nested/nested2/license2.md', function (err, callback) {
 				expect(callback).to.have.property('container', container);
 				expect(callback).to.have.property('path', 'nested/nested2');
-				expect(callback).to.have.property('filename', 'license.md');
-				expect(callback).to.have.property('url', container + '/nested/nested2/license.md');
+				expect(callback).to.have.property('filename', 'license2.md');
+				expect(callback).to.have.property('url', container + '/nested/nested2/license2.md');
 				next();
 			});
 		});
@@ -115,6 +115,20 @@ describe('LocalSystem', function () {
 	});
 
 	describe('#__download', function () {
+
+		it('should download new file', function (next) {
+			Storage.get('localStorage').download('nested/nested2/license2.md', container + '/license.md', function (err) {
+				expect(err).to.be.null;
+				next();
+			});
+		});
+
+		it('should raise an error when downloading directory', function (next) {
+			Storage.get('localStorage').download('nested', container + '/license.md', function (err) {
+				expect(err).to.match(/Can't download directory/);
+				next();
+			});
+		});
 
 	});
 
