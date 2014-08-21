@@ -78,7 +78,27 @@ Result object we receive on successful callback looks like the following one:
 }
 ```
 
-See detailed provider-specific docs for better explanation of above elements and their meaning.
+**Removing**
+
+```js
+Storage.get('myProvider').remove('/remote/path', function (err) {
+	// do your job
+});
+```
+
+Error object is empty when operation was successful.
+
+**Downloading**
+
+```js
+Storage.get('myProvider').download('/remote/path', '/local/path', function (err) {
+	// do your job
+});
+```
+
+Error object is empty when operation was successful.
+
+**See detailed provider-specific docs for better explanation of above methods and their meaning.**
 
 ## Motivation
 
