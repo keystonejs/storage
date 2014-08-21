@@ -29,7 +29,7 @@ describe('LocalSystem', function () {
 		rimraf(container, done);
 	});
 
-	describe('#__ensureContainer', function () {
+	describe('#_ensureContainer', function () {
 
 		it('should create appropriate folder for a new instance', function (next) {
 			fs.exists(container, function (exists) {
@@ -40,7 +40,7 @@ describe('LocalSystem', function () {
 
 	});
 
-	describe('#__upload', function () {
+	describe('#_upload', function () {
 
 		it('should upload file to a root folder', function (next) {
 			Storage.get('localStorage').upload('LICENSE', 'license', function (err) {
@@ -96,7 +96,7 @@ describe('LocalSystem', function () {
 
 	});
 
-	describe('#__remove', function () {
+	describe('#_remove', function () {
 
 		before(function (next) {
 			Storage.get('localStorage').upload('LICENSE', 'nestedRemove/license', function () {
@@ -127,7 +127,7 @@ describe('LocalSystem', function () {
 
 	});
 
-	describe('#__download', function () {
+	describe('#_download', function () {
 
 		before(function (next) {
 			Storage.get('localStorage').upload('LICENSE', 'nestedDownload/LICENSE', function (err) {

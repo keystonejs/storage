@@ -44,27 +44,27 @@ describe('StorageClient', function () {
 				expect(testObject.upload).to.throw(/Cannot invoke/);
 				expect(testObject.remove).to.throw(/Cannot invoke/);
 				expect(testObject.download).to.throw(/Cannot invoke/);
-				expect(testObject.__ensureContainer).to.throw(/Cannot invoke/);
+				expect(testObject._ensureContainer).to.throw(/Cannot invoke/);
 
 			});
 
 			it('should allow to use common StorageClient methods', function () {
-				expect(testObject.__ensureValid).not.to.throw(/Cannot invoke/);
+				expect(testObject._ensureValid).not.to.throw(/Cannot invoke/);
 			});
 
 		});
 
-		describe('#__isValid', function () {
+		describe('#_isValid', function () {
 
 			it('should throw an error if given schema is invalid', function () {
 				expect(function () {
-					testObject.__ensureValid(['key', 'keyId'], {key: 'someValue'});
+					testObject._ensureValid(['key', 'keyId'], {key: 'someValue'});
 				}).to.throw(/Missing argument for keyId/);
 			});
 
 			it('should handle non-array arguments', function () {
 				expect(function () {
-					testObject.__ensureValid('key', {key: 'someValue'});
+					testObject._ensureValid('key', {key: 'someValue'});
 				}).to.not.throw(TypeError);
 			});
 
@@ -82,12 +82,12 @@ describe('StorageClient', function () {
 
 		inherits(TestObject, StorageClient);
 
-		var ensureStub = stub(TestObject.prototype, '__ensureContainer').callsArgWith(0, null);
+		var ensureStub = stub(TestObject.prototype, '_ensureContainer').callsArgWith(0, null);
 
 		it('should assign arguments to local properties by calling parent constructor', function () {
 			var testObject = new TestObject({someValue: ''}, {someValue: ''});
-			expect(testObject).to.have.deep.property('__config.someValue');
-			expect(testObject).to.have.deep.property('__connection.someValue');
+			expect(testObject).to.have.deep.property('_config.someValue');
+			expect(testObject).to.have.deep.property('_connection.someValue');
 		});
 
 		it('should throw an error if unable to ensure container', function () {
