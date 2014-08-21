@@ -29,6 +29,10 @@ describe('Storage', function () {
 			expect(Storage._config).to.equal('config');
 		});
 
+		it('should return this to allow method chaining', function () {
+			expect(Storage.init('config')).to.equal(Storage);
+		});
+
 	});
 
 	describe('#add', function () {
@@ -36,6 +40,10 @@ describe('Storage', function () {
 		it('it must set up correctly variables', function () {
 			Storage.add('amazon', 'config');
 			expect(Storage._config.amazon).to.equal('config');
+		});
+
+		it('should return this to allow method chaining', function () {
+			expect(Storage.add('amazon', '')).to.equal(Storage);
 		});
 
 	});
