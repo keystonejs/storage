@@ -58,6 +58,28 @@ Storage.get('myProvider');
 
 Configuration object should always contain `provider` key with either `Storage.Providers` brought to you by default or a custom package from npm attached via e.g. `require()`. After that, include other, provider-specific keys.
 
+## Usage
+
+**Uploading**
+
+```js
+Storage.get('myProvider').upload('/path/to/your/file', '/remote/path', function (err, result) {
+	// do your job
+});
+```
+Result object we receive on successful callback looks like the following one:
+
+```js
+{
+	container: <container_name>,
+	path: <path_to_file> // relative to container,
+	filename: <file_name>,
+	url: <full_url_to_a_file>
+}
+```
+
+See detailed provider-specific docs for better explanation of above elements and their meaning.
+
 ## Motivation
 
 If you ever wanted to implement storage integration right in your application - we got you covered. You've probably encountered problems with different libraries, especially if you wanted to integrate two or three providers, just to give your users a better choice. That's why `Storage.js` was created. Wrapping multiple libraries and creating simple abstraction layer for them allows you to easily add about 5 providers at once!
