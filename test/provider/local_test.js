@@ -82,7 +82,7 @@ describe('LocalSystem', function () {
 
 		it('should raise an error when uploading a file within another file', function (next) {
 			Storage.get('localStorage').upload('LICENSE', 'nested/nested2/license/nested', function (err) {
-				expect(err[0]).to.have.property('code', 'ENOTDIR');
+				expect(err).to.have.property('code', 'ENOTDIR');
 				next();
 			});
 		});
