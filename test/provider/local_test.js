@@ -43,21 +43,21 @@ describe('LocalSystem', function () {
 	describe('#__upload', function () {
 
 		it('should upload file to a root folder', function (next) {
-			Storage.get('localStorage').upload('LICENSE', 'license.md', function (err) {
+			Storage.get('localStorage').upload('LICENSE', 'license', function (err) {
 				expect(err).to.be.null;
 				next();
 			});
 		});
 
 		it('should upload file to a nested folder', function (next) {
-			Storage.get('localStorage').upload('LICENSE', 'nested/nested2/license.md', function (err) {
+			Storage.get('localStorage').upload('LICENSE', 'nested/nested2/license', function (err) {
 				expect(err).to.be.null;
 				next();
 			});
 		});
 
 		it('should upload & overwrite file to existing nested folder', function (next) {
-			Storage.get('localStorage').upload('LICENSE', 'nested/nested2/license.md', function (err) {
+			Storage.get('localStorage').upload('LICENSE', 'nested/nested2/license', function (err) {
 				expect(err).to.be.null;
 				next();
 			});
@@ -80,9 +80,9 @@ describe('LocalSystem', function () {
 			});
 		});
 
-		it('should raise an error when trying to upload file as a directory', function (next) {
-			Storage.get('localStorage').upload('LICENSE', 'nested/nested2', function (err) {
-				expect(err.message).to.match(/Can't upload as a directory/);
+		it('should raise an error when uploading a file within another file', function (next) {
+			Storage.get('localStorage').upload('LICENSE', 'nested/nested2/license/nested', function (err) {
+				expect(err[0]).to.have.property('code', 'ENOTDIR');
 				next();
 			});
 		});
@@ -91,23 +91,29 @@ describe('LocalSystem', function () {
 
 	describe('#__remove', function () {
 
+		before(function (next) {
+			Storage.get('localStorage').upload('LICENSE', 'nested/nested2/license', function () {
+				next();
+			});
+		});
+
 		it('should remove existing file', function (next) {
-			Storage.get('localStorage').remove('nested/nested2/license.md', function (err) {
+			Storage.get('localStorage').remove('nested/nested2/license', function (err) {
 				expect(err).to.be.null;
 				next();
 			});
 		});
 
 		it('should warn when file does not exists', function (next) {
-			Storage.get('localStorage').remove('nested/nested2/license.md', function (err) {
-				expect(err).to.have.property('code', 'ENOENT');
+			Storage.get('localStorage').remove('nested/nested2/license', function (err) {
+				expect(err.message).to.match(/Can't remove non-existing/);
 				next();
 			});
 		});
 
 		it('should raise an error when trying to remove a directory', function (next) {
 			Storage.get('localStorage').remove('nested/nested2', function (err) {
-				expect(err.message).to.match(/No file/);
+				expect(err.message).to.match(/Can't remove entire directory/);
 				next();
 			});
 		});
@@ -128,6 +134,10 @@ describe('LocalSystem', function () {
 				expect(err).to.match(/Can't download directory/);
 				next();
 			});
+		});
+
+		it.skip('should allow to download a file without an extension', function (next) {
+
 		});
 
 	});
