@@ -82,14 +82,14 @@ describe('LocalSystem', function () {
 
 		it('should raise an error when uploading a file within another file', function (next) {
 			Storage.get('localStorage').upload('LICENSE', 'nestedUpload/license/nested', function (err) {
-				expect(err).to.have.property('code', 'EEXIST');
+				expect(err).to.match(/Can't ensure directory/);
 				next();
 			});
 		});
 
 		it('should raise an error when uploading a file as a directory', function (next) {
 			Storage.get('localStorage').upload('LICENSE', 'nestedUpload', function (err) {
-				expect(err).to.not.be.null; //depending on env, either EISDIR or EPERM
+				expect(err).to.match(/There was a problem with uploading/);
 				next();
 			});
 		});
@@ -157,8 +157,8 @@ describe('LocalSystem', function () {
 		});
 
 		it('should return an error when downloading to a wrong path', function (next) {
-			Storage.get('localStorage').download('nestedFolder/LICENSE', container + '/nestedDownload/LICENSE/t', function (err) {
-				expect(err).to.not.be.null;
+			Storage.get('localStorage').download('nestedDownload/LICENSE', container + '/nestedDownload/LICENSE/t', function (err) {
+				expect(err).to.match(/There was a problem with downloading/);
 				next();
 			});
 		});
