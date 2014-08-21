@@ -98,9 +98,9 @@ describe('LocalSystem', function () {
 
 	describe('#_remove', function () {
 
-		before(function (next) {
-			Storage.get('localStorage').upload('LICENSE', 'nestedRemove/license', function () {
-				next();
+		before(function (done) {
+			Storage.get('localStorage').upload('LICENSE', 'nestedRemove/license', function (err) {
+				done(err);
 			});
 		});
 
@@ -129,9 +129,9 @@ describe('LocalSystem', function () {
 
 	describe('#_download', function () {
 
-		before(function (next) {
+		before(function (done) {
 			Storage.get('localStorage').upload('LICENSE', 'nestedDownload/LICENSE', function (err) {
-				next(err);
+				done(err);
 			});
 		});
 
