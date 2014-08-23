@@ -75,7 +75,7 @@ describe('LocalSystem', function () {
 
 		it('should raise an error when trying to upload directory', function (next) {
 			Storage.get('localStorage').upload('test', 'nestedUpload/license.dir', function (err) {
-				expect(err.message).to.match(/Can't upload entire directory/);
+				expect(err.message).to.match(/Can't upload directory/);
 				next();
 			});
 		});
