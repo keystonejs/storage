@@ -77,7 +77,7 @@ describe('Storage', function () {
 
 		it('should cache module instance instead of recreating', function () {
 			var constructor = spy(Storage.Providers, 'AmazonS3');
-			stub(Storage.Providers.AmazonS3.prototype, '_ensureContainer').callsArgWith(0, null);
+			stub(Storage.Providers.AmazonS3.prototype, '_init').callsArgWith(0, null);
 
 			Storage.init({
 				amazon: {

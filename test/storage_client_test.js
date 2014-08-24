@@ -43,7 +43,7 @@ describe('StorageClient', function () {
 				expect(testObject.upload).to.throw(/Cannot invoke/);
 				expect(testObject.remove).to.throw(/Cannot invoke/);
 				expect(testObject.download).to.throw(/Cannot invoke/);
-				expect(testObject._ensureContainer).to.throw(/Cannot invoke/);
+				expect(testObject._init).to.throw(/Cannot invoke/);
 
 			});
 
