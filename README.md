@@ -10,14 +10,16 @@ Storage.js is a NodeJS library that standarizes common available via `npm` libra
 	* Openshift
 	* HP
 	* Local disk
-	
-* To be included soon:
 	* MongoDB
+
+* To be included soon:
+	* Dropbox, Google Drive
+	* You tell me :)
 
 * After initial release
 	* (S)FTP - due to lack of nice, up-to-date modules, this is for now on hold.
 
-> More providers will be added by community requests (feel free to create an issue). 
+> More providers will be added by community requests (feel free to create an issue).
 
 ## Installation
 
@@ -118,7 +120,7 @@ If you ever wanted to implement storage integration right in your application - 
 
 ## API Reference
 
-Will be published soon as a 'Readme.md' file under `lib` dir.
+Will be published soon under github pages. To generate it on your own, simply run `gulp doc` task.
 
 ## Tests
 
@@ -132,6 +134,7 @@ You are welcome! Feel free to submit bugs, create issues and do pull requests. T
 
 Special thanks to maintainers of:
 - [`pkgcloud`](https://github.com/pkgcloud/pkgcloud) for providing cloud integrations for Azure, HP, Rackspace, OpenShift and Amazon.
+- [`gridfs-stream`](https://github.com/aheckmann/gridfs-stream) for MongoDB layer
 
 ## License
 
