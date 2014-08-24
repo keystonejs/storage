@@ -13,14 +13,18 @@ Storage.init({
 	}
 });
 
-// Because no process.env.storage is specified, we use 'amazon' for now
-var client = Storage.obtain('amazon');
+Storage.get('amazon', function (err, client) {
 
-// As long as not implemented, will raise an error here
-client.upload('../LICENSE', 'license.md', function (err) {
-	if (err) {
-		console.log(err.message);
-	} else {
-		console.log('Uploaded');
-	}
+	if (err) console.log(err);
+
+	// As long as not implemented, will raise an error here
+	client.upload('../LICENSE', 'license.md', function (err) {
+		if (err) {
+			console.log(err.message);
+		} else {
+			console.log('Uploaded');
+		}
+	});
+
 });
+

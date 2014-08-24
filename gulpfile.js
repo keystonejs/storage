@@ -2,7 +2,9 @@ var gulp = require('gulp'),
 	cover = require('gulp-coverage'),
 	jshint = require('gulp-jshint'),
 	mocha = require('gulp-mocha'),
-	rimraf = require('gulp-rimraf');
+	rimraf = require('gulp-rimraf'),
+	jsdoc = require("gulp-jsdoc");
+
 
 // Common project paths
 var paths = {
@@ -59,6 +61,14 @@ gulp.task('coverage', function () {
 gulp.task('clean-coverage', function () {
 	return gulp.src(['.coverdebug', '.coverdata', '.coverrun', 'coverage.html'], { read: false })
 		.pipe(rimraf())
+});
+
+gulp.task('doc', function () {
+	return gulp.src("./lib/**/*.js")
+		.pipe(jsdoc.parser({
+			plugins: ['plugins/markdown']
+		}))
+		.pipe(jsdoc('./documentation-output'))
 });
 
 /*

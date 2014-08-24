@@ -4,8 +4,8 @@ var Storage = require('../lib'),
 
 Storage.init({
 	custom: {
-		provider: Storage.Providers.LocalSystem,
-		container: 'practical'
+		provider: Storage.Providers.MongoDB,
+		database: 'test'
 	}
 });
 
@@ -13,7 +13,6 @@ Storage.get('custom', function (err, client) {
 	async.waterfall([
 		function uploadFile(callback) {
 			client.upload('../LICENSE', 'testing/license.md', function (err, res) {
-				console.log(res);
 				callback(err);
 			});
 		},
@@ -22,11 +21,6 @@ Storage.get('custom', function (err, client) {
 				callback(err);
 			});
 		},
-		function removeFile(callback) {
-			client.remove('testing/license.md', function (err) {
-				callback(err);
-			});
-		}
 	], function (err) {
 		if (err) {
 			console.log('Error - ', err);
@@ -35,6 +29,8 @@ Storage.get('custom', function (err, client) {
 		}
 	});
 });
+
+Storage.get('custom', function () {});
 
 
 
