@@ -13,10 +13,14 @@ Storage.get('custom', function (err, client) {
 	async.waterfall([
 		function uploadFile(callback) {
 			client.upload('../LICENSE', 'testing/license.md', function (err, res) {
-				console.log(res);
 				callback(err);
 			});
-		}
+		},
+		function downloadFile(callback) {
+			client.download('testing/license.md', 'license2.md', function (err) {
+				callback(err);
+			});
+		},
 	], function (err) {
 		if (err) {
 			console.log('Error - ', err);
