@@ -65,9 +65,9 @@ describe('LocalSystem', function () {
 		it('should return valid callback', function (next) {
 			localStorage.upload('LICENSE', 'nestedUpload/license2.md', function (err, callback) {
 				expect(callback).to.have.property('container', container);
-				expect(callback).to.have.property('path', 'nestedUpload');
+				expect(callback).to.have.property('path', 'nestedUpload/license2.md');
 				expect(callback).to.have.property('filename', 'license2.md');
-				expect(callback).to.have.property('url', container + '/nestedUpload/license2.md');
+				expect(callback).to.have.property('url', '');
 				next();
 			});
 		});
