@@ -8,8 +8,7 @@
 'use strict';
 
 var expect = require('chai').expect,
-	inherits = require('util').inherits,
-	stub = require('sinon').stub;
+	inherits = require('util').inherits;
 
 describe('StorageClient', function () {
 
@@ -70,32 +69,6 @@ describe('StorageClient', function () {
 
 		});
 
-
-
-	});
-
-	describe('#inheritance', function () {
-
-		var TestObject = function TestObject(config, connection) {
-			TestObject.super_.call(this, config, connection);
-		};
-
-		inherits(TestObject, StorageClient);
-
-		var ensureStub = stub(TestObject.prototype, '_ensureContainer').callsArgWith(0, null);
-
-		it('should assign arguments to local properties by calling parent constructor', function () {
-			var testObject = new TestObject({someValue: ''}, {someValue: ''});
-			expect(testObject).to.have.deep.property('_config.someValue');
-			expect(testObject).to.have.deep.property('_connection.someValue');
-		});
-
-		it('should throw an error if unable to ensure container', function () {
-			ensureStub.callsArgWith(0, new Error());
-			expect(function () {
-				new TestObject();
-			}).to.throw(/There was a problem/);
-		});
 
 	});
 

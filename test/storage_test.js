@@ -50,37 +50,25 @@ describe('Storage', function () {
 
 	describe('#get', function () {
 
-		it('should throw an error when no instance specified', function () {
-			expect(Storage.get).to.throw(/forgot to specify instance/);
+		it('should return an error when no instance specified', function () {
+			Storage.get(function (err) {
+				expect(err).to.match(/forgot to specify instance/);
+			});
 		});
 
-		it('should throw an error when no config specified for an instance', function () {
-			expect(function () {
-				Storage.get('amazon');
-			}).to.throw(/you forgot to declare it/);
+		it('should return an error when no config specified for an instance', function () {
+			Storage.get('amazon', function (err) {
+				expect(err).to.match(/you forgot to declare it/);
+			});
 		});
 
-		it('should throw an error when no provider specified for an instance', function () {
+		it('should return an error when no provider specified for an instance', function () {
 			Storage.init({
 				amazon: {}
 			});
-			expect(function () {
-				Storage.get('amazon');
-			}).to.throw(/is not specified/);
-		});
-
-		it('should throw an error when provider does not extend StorageClient', function () {
-			Storage.init({
-				amazon: {
-					provider: function () {},
-					key: '',
-					keyId: '',
-					container: ''
-				}
+			Storage.get('amazon', function (err) {
+				expect(err).to.match(/is not specified/);
 			});
-			expect(function () {
-				Storage.get('amazon');
-			}).to.throw(/not an instance of StorageClient/);
 		});
 
 	});
@@ -100,8 +88,8 @@ describe('Storage', function () {
 				}
 			});
 
-			Storage.get('amazon');
-			Storage.get('amazon');
+			Storage.get('amazon', function () {});
+			Storage.get('amazon', function () {});
 
 			expect(constructor.calledOnce).to.be.true;
 		});
