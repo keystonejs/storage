@@ -79,10 +79,10 @@ Result object we receive on successful callback looks like the following one:
 
 ```js
 {
-	container: <container_name>,
-	path: <path_to_file> // relative to container,
-	filename: <file_name>,
-	url: <full_url_to_a_file>
+	container: 'container_name',
+	path: 'path_to_file' // relative to container,
+	filename: 'file_name',
+	url: 'full_url_to_a_file'
 }
 ```
 
