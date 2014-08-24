@@ -30,6 +30,8 @@ Storage.get('custom', function (err, client) {
 	});
 });
 
+Storage.get('custom', function () {});
+
 
 
 
