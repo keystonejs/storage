@@ -53,7 +53,9 @@ Storage.add('myProvider', {
 // Call as many times as you want
 Storage.add('otherProvider', {...});
 
-Storage.get('myProvider');
+Storage.get('myProvider', function (err, client) {
+	// do your job
+});
 ```
 
 Configuration object should always contain `provider` key with either `Storage.Providers` brought to you by default or a custom package from npm attached via e.g. `require()`. After that, include other, provider-specific keys.
@@ -63,9 +65,13 @@ Configuration object should always contain `provider` key with either `Storage.P
 **Uploading**
 
 ```js
-Storage.get('myProvider').upload('/path/to/your/file', '/remote/path', function (err, result) {
-	// do your job
+Storage.get('myProvider', function (err, client) {
+	if (err) return;
+	client.upload('/path/to/your/file', '/remote/path', function (err, result) {
+        // do your job
+    });
 });
+
 ```
 Result object we receive on successful callback looks like the following one:
 
@@ -81,8 +87,11 @@ Result object we receive on successful callback looks like the following one:
 **Removing**
 
 ```js
-Storage.get('myProvider').remove('/remote/path', function (err) {
-	// do your job
+Storage.get('myProvider', function (err, client) {
+	if (err) return;
+	client.remove('/remote/path', function (err) {
+		// do your job
+	});
 });
 ```
 
@@ -91,8 +100,11 @@ Error object is empty when operation was successful.
 **Downloading**
 
 ```js
-Storage.get('myProvider').download('/remote/path', '/local/path', function (err) {
-	// do your job
+Storage.get('myProvider', function (err, client) {
+	if (err) return;
+	client.download('/remote/path', '/local/path', function (err) {
+		// do your job
+	});
 });
 ```
 
