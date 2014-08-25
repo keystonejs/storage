@@ -1,6 +1,9 @@
 language: node_js
 node_js: ["0.11", "0.10"]
 
+services:
+  - mongodb
+
 env:
   CODECLIMATE_REPO_TOKEN: e0a89f45d0822e67d107d4f71856ab67db44c876bb242f2c807aeb460c1c198a
 
