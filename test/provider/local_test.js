@@ -119,7 +119,7 @@ describe('LocalSystem', function () {
 
 		it('should raise an error when trying to remove a directory', function (next) {
 			localStorage.remove('nestedRemove', function (err) {
-				expect(err.message).to.match(/Can't remove entire directory/);
+				expect(err.message).to.match(/Can't remove/);
 				next();
 			});
 		});
