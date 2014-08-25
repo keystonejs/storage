@@ -12,7 +12,7 @@ Storage.init({
 Storage.get('custom', function (err, client) {
 	async.waterfall([
 		function uploadFile(callback) {
-			client.upload('../LICENSE', 'testing/license.md', function (err, res) {
+			client.upload('../LICENSE', 'testing/license.md', function (err) {
 				callback(err);
 			});
 		},
