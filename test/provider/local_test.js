@@ -28,7 +28,7 @@ describe('LocalSystem', function () {
 		rimraf(container, done);
 	});
 
-	describe('#_ensureContainer', function () {
+	describe('#_init', function () {
 
 		it('should create appropriate folder for a new instance', function (next) {
 			fs.exists(container, function (exists) {
