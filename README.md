@@ -19,7 +19,7 @@ Storage.js is a NodeJS library that standarizes common available via `npm` libra
 * After initial release
 	* (S)FTP - due to lack of nice, up-to-date modules, this is for now on hold.
 
-> More providers will be added by community requests (feel free to create an issue).
+> More providers will be added upon community requests (feel free to create an issue).
 
 ## Installation
 
