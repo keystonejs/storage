@@ -14,6 +14,11 @@ Storage.pre('custom', 'upload', function (done, fileSrc) {
 	done();
 });
 
+Storage.pre('upload', function (done, fileSrc) {
+	console.log('generic pre' + fileSrc);
+	done();
+});
+
 Storage.get('custom', function (err, client) {
 	async.waterfall([
 		function uploadFile(callback) {
