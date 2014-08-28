@@ -51,24 +51,25 @@ describe('Storage', function () {
 	describe('#get', function () {
 
 		it('should return an error when no instance specified', function () {
-			Storage.get(function (err) {
-				expect(err).to.match(/forgot to specify instance/);
-			});
+			expect(function () {
+				Storage.get();
+			}).to.throw(/forgot to specify instance/);
 		});
 
 		it('should return an error when no config specified for an instance', function () {
-			Storage.get('amazon', function (err) {
-				expect(err).to.match(/you forgot to declare it/);
-			});
+			expect(function () {
+				Storage.get('amazon');
+			}).to.throw(/you forgot to declare it/);
 		});
 
 		it('should return an error when no provider specified for an instance', function () {
 			Storage.init({
 				amazon: {}
 			});
-			Storage.get('amazon', function (err) {
-				expect(err).to.match(/is not specified/);
-			});
+
+			expect(function () {
+				Storage.get('amazon');
+			}).to.throw(/is not specified/);
 		});
 
 	});
@@ -88,8 +89,10 @@ describe('Storage', function () {
 				}
 			});
 
-			Storage.get('amazon', function () {});
-			Storage.get('amazon', function () {});
+			Storage.get('amazon', function () {
+			});
+			Storage.get('amazon', function () {
+			});
 
 			expect(constructor.calledOnce).to.be.true;
 		});
