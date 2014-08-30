@@ -1,16 +1,16 @@
 Storage.js [![Travis-Ci](https://travis-ci.org/keystonejs/storage.js.svg)](https://travis-ci.org/keystonejs/storage.js)&nbsp;[![Code Climate](https://codeclimate.com/github/keystonejs/storage.js/badges/gpa.svg)](https://codeclimate.com/github/keystonejs/storage.js)&nbsp;[![Test Coverage](https://codeclimate.com/github/keystonejs/storage.js/badges/coverage.svg?v=2)](https://codeclimate.com/github/keystonejs/storage.js)&nbsp;[![Dependency Status](https://gemnasium.com/keystonejs/storage.js.svg)](https://gemnasium.com/keystonejs/storage.js)
 ==========
 
-Storage.js is a NodeJS library that standarizes common available via `npm` libraries like `pkgcloud` and abstracts away differences (especially within callbacks). Just write a simple implementation and leave configuration up to your users.
+Storage.js is a NodeJS library that standardizes common available via `npm` libraries like `pkgcloud` and abstracts away differences (especially within callbacks). Just write a simple implementation and leave configuration up to your users.
 
 * Available storage providers:
-	* Rackspace
-	* Amazon
-	* Azure
-	* Openshift
-	* HP
-	* Local disk
-	* MongoDB
+	* Rackspace (*Storage.Providers.Rackspace*)
+	* Amazon (*Storage.Providers.AmazonS3*)
+	* Azure (*Storage.Providers.Azure*)
+	* Openshift (*Storage.Providers.Openshift*)
+	* HP (*Storage.Providers.HP*)
+	* Local disk (*Storage.Providers.LocalSystem*)
+	* MongoDB (*Storage.Providers.MongoDB*)
 
 * To be included soon:
 	* Dropbox, Google Drive
@@ -27,7 +27,7 @@ Storage.js is a NodeJS library that standarizes common available via `npm` libra
 
 ## Configuration
 
-After requiring for the first time, invoke either `init` or `add` method by passing configuration object.
+After requiring for the first time, invoke either `init` or `add` method by passing configuration object containing `provider` and its config.
 
 ```js
 var Storage = require('storage');
@@ -60,7 +60,6 @@ Storage.get('myProvider', function (err, client) {
 });
 ```
 
-Configuration object should always contain `provider` key with either `Storage.Providers` brought to you by default or a custom package from npm attached via e.g. `require()`. After that, include other, provider-specific keys.
 
 ## Usage
 
