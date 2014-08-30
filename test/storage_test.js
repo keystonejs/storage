@@ -50,12 +50,6 @@ describe('Storage', function () {
 
 	describe('#get', function () {
 
-		it('should return an error when no instance specified', function () {
-			expect(function () {
-				Storage.get();
-			}).to.throw(/forgot to specify instance/);
-		});
-
 		it('should return an error when no config specified for an instance', function () {
 			expect(function () {
 				Storage.get('amazon');
