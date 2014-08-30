@@ -82,12 +82,14 @@ Result object we receive on successful callback looks like the following one:
 
 ```js
 {
-	container: 'container_name',
-	path: 'path_to_file' // relative to container,
-	filename: 'file_name',
-	url: 'full_url_to_a_file'
+	container: '',
+	path: '',
+	filename: '',
+	url: ''
 }
 ```
+
+Although that object is the same across all of the providers, please read provider-specific docs for better explanation of properties.
 
 ### Removing
 
@@ -159,7 +161,7 @@ Will be published soon with better docs as well.
 
 ## Testing
 
-With our ~~100%~~ 70% code coverage, we believe it's are important. You can run our test suites by a command `npm test`. To generate code coverage, use `gulp coverage`.
+With our ~~100%~~ 70% (still improving!) code coverage, we believe it's important. You can run our test suites by a command `npm test`. To generate code coverage, use `gulp coverage`.
 
 ## About us
 
