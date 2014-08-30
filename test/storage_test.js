@@ -28,7 +28,6 @@ describe('Storage', function () {
 				container: ''
 			}
 		});
-		Storage._cache = {};
 	});
 
 	describe('#init', function () {
