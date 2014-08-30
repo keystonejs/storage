@@ -114,6 +114,43 @@ Error object is empty when operation was successful.
 
 **See detailed provider-specific docs for better explanation of above methods and their meaning.**
 
+## Hooks
+
+You can hook either before or after one of the following methods: `upload`, `download`, `remove`.
+
+### Usage
+
+Your method passed to a hook will be called with following arguments:
+* `next` method to call on end. If error is passed, other hooks and entire method will be skipped,
+* list of the method arguments.
+
+For further information on how hooks work - visit [`hook.js`](https://github.com/bnoguchi/hooks-js) repository.
+
+### Global hooks
+
+Useful if you need a global hook for every provider.
+
+```js
+Storage.pre('upload', function (next, localSrc) {
+	next();
+});
+```
+
+### Local hooks
+
+To define a local hook, you can either do it globally or after receiving instance of your client.
+
+```js
+Storage.pre('yourProviderName', 'upload', function (next) {
+	next();
+});
+Storage.get('yourProviderName', function (err, client) {
+	client.pre('upload', function (next) {
+		next();
+	});
+	// do your upload
+});
+
 ## Motivation
 
 If you ever wanted to implement storage integration right in your application - we got you covered. You've probably encountered problems with different libraries, especially if you wanted to integrate two or three providers, just to give your users a better choice. That's why `Storage.js` was created. Wrapping multiple libraries and creating simple abstraction layer for them allows you to easily add about 5 providers at once!
