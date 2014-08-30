@@ -64,7 +64,7 @@ Configuration object should always contain `provider` key with either `Storage.P
 
 ## Usage
 
-**Uploading**
+### Uploading
 
 ```js
 Storage.get('myProvider', function (err, client) {
@@ -86,7 +86,7 @@ Result object we receive on successful callback looks like the following one:
 }
 ```
 
-**Removing**
+### Removing
 
 ```js
 Storage.get('myProvider', function (err, client) {
@@ -97,9 +97,7 @@ Storage.get('myProvider', function (err, client) {
 });
 ```
 
-Error object is empty when operation was successful.
-
-**Downloading**
+### Downloading
 
 ```js
 Storage.get('myProvider', function (err, client) {
@@ -110,8 +108,6 @@ Storage.get('myProvider', function (err, client) {
 });
 ```
 
-Error object is empty when operation was successful.
-
 **See detailed provider-specific docs for better explanation of above methods and their meaning.**
 
 ## Hooks
@@ -120,7 +116,7 @@ You can hook either before or after one of the following methods: `upload`, `dow
 
 ### Usage
 
-Your method passed to a hook will be called with following arguments:
+Your method passed to a hook will be called with the following arguments:
 * `next` method to call on end. If error is passed, other hooks and entire method will be skipped,
 * list of the method arguments.
 
@@ -150,6 +146,7 @@ Storage.get('yourProviderName', function (err, client) {
 	});
 	// do your upload
 });
+```
 
 ## Motivation
 
