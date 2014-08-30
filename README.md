@@ -4,13 +4,13 @@ Storage.js [![Travis-Ci](https://travis-ci.org/keystonejs/storage.js.svg)](https
 Storage.js is a NodeJS library that standardizes common available via `npm` libraries like `pkgcloud` and abstracts away differences (especially within callbacks). Just write a simple implementation and leave configuration up to your users.
 
 * Available storage providers:
-	* Rackspace (*Storage.Providers.Rackspace*)
-	* Amazon (*Storage.Providers.AmazonS3*)
-	* Azure (*Storage.Providers.Azure*)
-	* Openshift (*Storage.Providers.Openshift*)
-	* HP (*Storage.Providers.HP*)
-	* Local disk (*Storage.Providers.LocalSystem*)
-	* MongoDB (*Storage.Providers.MongoDB*)
+	* Rackspace `Storage.Providers.Rackspace`
+	* Amazon `Storage.Providers.AmazonS3`
+	* Azure `Storage.Providers.Azure`
+	* Openshift `Storage.Providers.Openshift`
+	* HP `Storage.Providers.HP`
+	* Local disk `Storage.Providers.LocalSystem`
+	* MongoDB `Storage.Providers.MongoDB`
 
 * To be included soon:
 	* Dropbox, Google Drive
