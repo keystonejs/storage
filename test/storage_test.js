@@ -33,12 +33,7 @@ describe('Storage', function () {
 	describe('#init', function () {
 
 		it('must set up variables correctly', function () {
-			Storage.init('config');
-			expect(Storage._config).to.equal('config');
-		});
-
-		it('should return {Storage} to allow method chaining', function () {
-			expect(Storage.init('config')).to.equal(Storage);
+			expect(Storage._config).to.have.property('amazon');
 		});
 
 	});
@@ -46,12 +41,8 @@ describe('Storage', function () {
 	describe('#add', function () {
 
 		it('must set up variables correctly', function () {
-			Storage.add('amazon', 'config');
-			expect(Storage._config.amazon).to.equal('config');
-		});
-
-		it('should return {Storage} to allow method chaining', function () {
-			expect(Storage.add('amazon', '')).to.equal(Storage);
+			Storage.add('custom', '');
+			expect(Storage._config).to.have.property('custom');
 		});
 
 	});
