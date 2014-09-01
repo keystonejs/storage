@@ -12,14 +12,28 @@ Storage.js is a NodeJS library that standardizes common available via `npm` libr
 	* Local disk - `Storage.Providers.LocalSystem`
 	* MongoDB - `Storage.Providers.MongoDB`
 
-* To be included soon:
-	* Dropbox, Google Drive
-	* You tell me :)
+**Table of Contents**
 
-* After initial release
-	* (S)FTP - due to lack of nice, up-to-date modules, this is for now on hold.
-
-> More providers will be added upon community requests (feel free to create an issue).
+- [Storage.js](#user-content-storagejs-)
+	- [Installation](#user-content-installation)
+	- [Configuration](#user-content-configuration)
+		- [Global init](#user-content-global-init)
+		- [Separate init](#user-content-separate-init)
+	- [Usage](#user-content-usage)
+		- [Uploading](#user-content-uploading)
+		- [Removing](#user-content-removing)
+		- [Downloading](#user-content-downloading)
+	- [Hooks](#user-content-hooks)
+		- [Global hooks](#user-content-global-hooks)
+		- [Local hooks](#user-content-local-hooks)
+		- [Handling errors](#user-content-handling-errors)
+		- [Modifying parameters](#user-content-modifying-parameters)
+	- [Motivation](#user-content-motivation)
+	- [API Reference](#user-content-api-reference)
+	- [Testing](#user-content-testing)
+	- [About us](#user-content-about-us)
+	- [Thanks](#user-content-thanks)
+	- [License](#user-content-license)
 
 ## Installation
 
