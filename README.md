@@ -215,14 +215,14 @@ After `next` function described above, the rest of the arguments is simply a lis
 So, it's possible to write a hook like below:
 ```js
 Storage.post('amazon', 'upload', function (next, localSrc, destSrc, callback) {
-	next(null, 'here we pass modified Src');
-	// or next(null, localSrc, 'here we modify destSrc');
+	next('here we pass modified Src');
+	// or next(localSrc, 'here we modify destSrc');
 	// and so on...
 });
 ```
 Please note that we pass `localSrc` parameter to `next`, so other hooks and original method will used that value instead.
 
-For further information on how hooks work - visit [`hook.js`](https://github.com/bnoguchi/hooks-js) repository.
+For further information on how hooks work and what are another ways of handling errors and modifying parameters - visit [`hook.js`](https://github.com/bnoguchi/hooks-js) repository.
 
 ## Motivation
 
