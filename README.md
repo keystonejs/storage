@@ -33,6 +33,7 @@ Storage.js is a NodeJS library that standardizes common available via `npm` libr
 
 ```js
 var Storage = require('storage.js');
+```
 
 ## Configuration
 
