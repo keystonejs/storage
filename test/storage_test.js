@@ -16,8 +16,11 @@ var expect = require('chai').expect,
 describe('Storage', function () {
 
 	var Storage = require('../lib'),
+		_emptyCallback = function () {},
 		_init = stub(Storage.Providers.AmazonS3.prototype, '_init').callsArgWith(0, null),
 		_cachedInstance = spy(Storage.Providers, 'AmazonS3');
+
+	stub(Storage.Providers.AmazonS3.prototype, 'upload').callsArgWith(2, null);
 
 	beforeEach(function () {
 		Storage.init({
@@ -28,6 +31,7 @@ describe('Storage', function () {
 				container: ''
 			}
 		});
+		Storage._cache = {};
 	});
 
 	describe('#init', function () {
@@ -74,8 +78,8 @@ describe('Storage', function () {
 	describe('#get', function () {
 
 		it('should call _init on every get', function () {
-			Storage.get('amazon', function () {});
-			Storage.get('amazon', function () {});
+			Storage.get('amazon', _emptyCallback);
+			Storage.get('amazon', _emptyCallback);
 			expect(_init.calledTwice).to.be.true;
 		});
 
@@ -90,24 +94,60 @@ describe('Storage', function () {
 
 	describe('#pre', function () {
 
-		it.skip('should set local hook', function () {
-
+		it('should set local hook', function (next) {
+			Storage
+				.pre('amazon', 'upload', function (done) {
+					done(new Error('Local Hook'));
+				})
+				.get('amazon', function (err, client) {
+					client.upload('file1.txt', 'file2.txt', function (err) {
+						expect(err.message).to.match(/Local Hook/);
+						next();
+					});
+				});
 		});
 
-		it.skip('should set global hook', function () {
-
+		it('should set global hook', function (next) {
+			Storage
+				.pre('upload', function (done) {
+					done(new Error('Global Hook'));
+				})
+				.get('amazon', function (err, client) {
+					client.upload('file1.txt', 'file2.txt', function (err) {
+						expect(err.message).to.match(/Global Hook/);
+						next();
+					});
+				});
 		});
 
 	});
 
 	describe('#post', function () {
 
-		it.skip('should set local hook', function () {
-
+		it('should set local hook', function (next) {
+			Storage
+				.post('amazon', 'upload', function (done) {
+					done(new Error('Local Hook'));
+				})
+				.get('amazon', function (err, client) {
+					client.upload('file1.txt', 'file2.txt', function (err) {
+						expect(err.message).to.match(/Local Hook/);
+						next();
+					});
+				});
 		});
 
-		it.skip('should set global hook', function () {
-
+		it('should set global hook', function (next) {
+			Storage
+				.post('upload', function (done) {
+					done(new Error('Global Hook'));
+				})
+				.get('amazon', function (err, client) {
+					client.upload('file1.txt', 'file2.txt', function (err) {
+						expect(err.message).to.match(/Global Hook/);
+						next();
+					});
+				});
 		});
 
 	});
