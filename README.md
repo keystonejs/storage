@@ -181,10 +181,10 @@ It accepts optional `Error` object that may:
 ```js
 Storage
 	.pre('amazon', 'upload', function (next) {
-		done(new Error('Hook!'));
+		next(new Error('Hook!'));
 	})
 	.pre('upload', function (next) {
-		done(new Error('This one is skipped!'));
+		next(new Error('This one is skipped!'));
 	});
 	.get('amazon', function (err, client) {
 		client.upload('file1.txt', 'file2.txt', function (err) {
@@ -196,10 +196,10 @@ Storage
 ```js
 Storage
 	.post('amazon', 'upload', function (next) {
-		done(new Error('Hook!'));
+		next(new Error('Hook!'));
 	})
 	.post('upload', function (next) {
-		done(new Error('This one is skipped!'));
+		next(new Error('This one is skipped!'));
 	});
 	.post('amazon', function (err, client) {
 		client.upload('file1.txt', 'file2.txt', function (err) {
