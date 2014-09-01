@@ -242,8 +242,8 @@ Author: [@grabbou](https://github.com/grabbou) via [KeystoneJS](https://github.c
 
 ## Thanks
 
-Special thanks to maintainers of:
-- [`pkgcloud`](https://github.com/pkgcloud/pkgcloud) for providing cloud integrations for Azure, HP, Rackspace, OpenShift and Amazon,
+Special thanks to the maintainers of:
+- [`pkgcloud`](https://github.com/pkgcloud/pkgcloud) for providing cloud integration with Azure, HP, Rackspace, OpenShift and Amazon,
 - [`gridfs-stream`](https://github.com/aheckmann/gridfs-stream) for MongoDB layer,
 - [`hook-js`](https://github.com/bnoguchi/hooks-js) for providing powerful and super easy hook library.
 
