@@ -115,15 +115,12 @@ Storage.get('cloudProvider', function (err, client) {
 
 ## Hooks
 
-You can hook either before or after one of the following methods: `upload`, `download`, `remove`.
+Following `pre`/`post` hooks are available:
+- `upload`,
+- `download`,
+- `remove`.
 
-### Usage
-
-Your method passed to a hook will be called with the following arguments:
-* `next` method to call on end. If error is passed, other hooks and entire method will be skipped,
-* list of the method arguments.
-
-For further information on how hooks work - visit [`hook.js`](https://github.com/bnoguchi/hooks-js) repository.
+To register your hook, you can do it either globally (for every provider) or locally (per provider).
 
 ### Global hooks
 
@@ -150,6 +147,60 @@ Storage.get('yourProviderName', function (err, client) {
 	// do your upload
 });
 ```
+
+### Handling errors
+
+When defining a hook function, you have an access to a few parameters that we pass to every `pre` / `post` method.
+
+The first one is `next` function that, when invoked, fires next hook or entire method.
+
+It accepts optional `Error` object that may:
+- inside `pre` - stop firing next hooks / original method and return that error as a result of method call
+```js
+Storage
+	.pre('amazon', 'upload', function (next) {
+		done(new Error('Hook!'));
+	})
+	.pre('upload', function (next) {
+		done(new Error('This one is skipped!'));
+	});
+	.get('amazon', function (err, client) {
+		client.upload('file1.txt', 'file2.txt', function (err) {
+			console.log(err); //Hook!
+		});
+	});
+```
+- inside `post` - stop firing next hooks and return that error as a result of method (original result object of method call will be lost)
+```js
+Storage
+	.post('amazon', 'upload', function (next) {
+		done(new Error('Hook!'));
+	})
+	.post('upload', function (next) {
+		done(new Error('This one is skipped!'));
+	});
+	.post('amazon', function (err, client) {
+		client.upload('file1.txt', 'file2.txt', function (err) {
+			console.log(err); //Hook! (but method was invoked anyway!)
+		});
+	});
+```
+
+### Modifying parameters
+
+After `next` function described above, the rest of the arguments is simply a list of original method parameters.
+
+So, it's possible to write a hook like below:
+```js
+Storage.post('amazon', 'upload', function (next, localSrc, destSrc, callback) {
+	next(null, 'here we pass modified Src');
+	// or next(null, localSrc, 'here we modify destSrc');
+	// and so on...
+});
+```
+Please note that we pass `localSrc` parameter to `next`, so other hooks and original method will used that value instead.
+
+For further information on how hooks work - visit [`hook.js`](https://github.com/bnoguchi/hooks-js) repository.
 
 ## Motivation
 
