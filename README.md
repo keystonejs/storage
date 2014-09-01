@@ -50,8 +50,8 @@ Before you start, you have to configure available providers by doing one of the 
 | HP | `Storage.Providers.HP` | `pkgcloud` | working |
 | Local | `Storage.Providers.LocalSystem` | own, based on `fs` | working |
 | MongoDB | `Storage.Providers.MongoDB` | `gfs-grid` | working |
-| Dropbox | `Storage.Providers.Dropbox | | planned |
-| Google Drive | `Storage.Providers.GDrive | | planned |
+| Dropbox | | | planned |
+| Google Drive |  | | planned |
 
 > More providers will be added upon community requests (feel free to create an issue).
 
