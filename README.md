@@ -41,15 +41,19 @@ Before you start, you have to configure available providers by doing one of the 
 
 ### Available providers
 
-| Provider | Javascript name | Library |
-| -------- | --------------- | ------- |
-| Azure | `Storage.Providers.Azure` | `pkgcloud` |
-| Amazon | `Storage.Providers.AmazonS3` | `pkgcloud` |
-| OpenShift | `Storage.Providers.Openshift` | `pkgcloud` |
-| Rackspace | `Storage.Providers.Rackspace` | `pkgcloud` |
-| HP | `Storage.Providers.HP` | `pkgcloud` |
-| Local | `Storage.Providers.LocalSystem` | own, based on `fs` |
-| MongoDB | `Storage.Providers.MongoDB` | `gfs-grid` |
+| Provider | Javascript name | Library | Status |
+| -------- | --------------- | ------- | ------ |
+| Azure | `Storage.Providers.Azure` | `pkgcloud` | working |
+| Amazon | `Storage.Providers.AmazonS3` | `pkgcloud` | working |
+| OpenShift | `Storage.Providers.Openshift` | `pkgcloud` | working |
+| Rackspace | `Storage.Providers.Rackspace` | `pkgcloud` | working |
+| HP | `Storage.Providers.HP` | `pkgcloud` | working |
+| Local | `Storage.Providers.LocalSystem` | own, based on `fs` | working |
+| MongoDB | `Storage.Providers.MongoDB` | `gfs-grid` | working |
+| Dropbox | `Storage.Providers.Dropbox | | planned |
+| Google Drive | `Storage.Providers.GDrive | | planned |
+
+> More providers will be added upon community requests (feel free to create an issue).
 
 ### Global init
 
