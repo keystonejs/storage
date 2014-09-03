@@ -42,6 +42,12 @@ Storage.get('custom', function (err, client) {
 	});
 });
 
+process.on('exit', function () {
+	Storage.exit(function () {
+		console.log('Exited');
+	});
+});
+
 Storage.get('custom', function () {});
 
 

@@ -224,6 +224,18 @@ Please note that we pass `localSrc` parameter to `next`, so other hooks and orig
 
 For further information on how hooks work and what are another ways of handling errors and modifying parameters - visit [`hook.js`](https://github.com/bnoguchi/hooks-js) repository.
 
+## Graceful exits
+
+In order to clean up resources used by the StorageAPI (for example opened connections to the MongoDB), `Storage` exposes method, called `exit` that you can use like below:
+
+```js
+process.on('exit', function () {
+	Storage.exit(function () {
+		console.log('Exited');
+	});
+});
+```
+
 ## Motivation
 
 If you ever wanted to implement storage integration right in your application - we got you covered. You've probably encountered problems with different libraries, especially if you wanted to integrate two or three providers, just to give your users a better choice. That's why `Storage.js` was created. Wrapping multiple libraries and creating simple abstraction layer for them allows you to easily add about 5 providers at once!
