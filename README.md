@@ -20,6 +20,7 @@ Storage.js is a NodeJS library that standardizes common available via `npm` libr
 		- [Local hooks](#user-content-local-hooks)
 		- [Handling errors](#user-content-handling-errors)
 		- [Modifying parameters](#user-content-modifying-parameters)
+	- [Graceful exits](#user-graceful-exits)
 	- [Motivation](#user-content-motivation)
 	- [API Reference](#user-content-api-reference)
 	- [Testing](#user-content-testing)
