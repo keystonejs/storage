@@ -16,7 +16,8 @@ var expect = require('chai').expect,
 describe('Storage', function () {
 
 	var Storage = require('../lib'),
-		_emptyCallback = function () {},
+		_emptyCallback = function () {
+		},
 		_init = stub(Storage.Providers.AmazonS3.prototype, '_init').callsArgWith(0, null),
 		_cachedInstance = spy(Storage.Providers, 'AmazonS3');
 
@@ -83,11 +84,20 @@ describe('Storage', function () {
 			expect(_init.calledTwice).to.be.true;
 		});
 
-		it.skip('should assign default instance if null', function (next) {
+		it('should assign default instance if null', function (next) {
+			Storage.settings('default instance', 'amazon');
 			Storage.get(function (err, client) {
 				expect(client).to.be.an.instanceof(Storage.Providers.AmazonS3);
 				next();
 			});
+		});
+
+		it('should throw an error if no default instance specified', function (next) {
+			delete Storage._settings['default instance'];
+			expect(function () {
+				Storage.get(function () {});
+			}).to.throw(/No default provider/);
+			next();
 		});
 
 	});
