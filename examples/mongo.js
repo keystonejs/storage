@@ -34,18 +34,14 @@ Storage.get('custom', function (err, client) {
 	], function (err) {
 		if (err) {
 			console.log('Error - ', err);
-			process.exit(1);
 		} else {
 			console.log('Successful');
-			process.exit(0);
 		}
+		Storage.exit(function () {
+			console.log('Exited');
+		});
 	});
-});
 
-process.on('exit', function () {
-	Storage.exit(function () {
-		console.log('Exited');
-	});
 });
 
 Storage.get('custom', function () {});
