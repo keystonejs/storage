@@ -16,8 +16,7 @@ var expect = require('chai').expect,
 describe('Storage', function () {
 
 	var Storage = require('../lib'),
-		_emptyCallback = function () {
-		},
+		_emptyCallback = function () {},
 		_init = stub(Storage.Providers.AmazonS3.prototype, '_init').callsArgWith(0, null),
 		_cachedInstance = spy(Storage.Providers, 'AmazonS3');
 
@@ -158,6 +157,23 @@ describe('Storage', function () {
 						next();
 					});
 				});
+		});
+
+	});
+
+	describe('#exit', function () {
+
+		it('should exit gracefully by calling _exit on every instance', function (next) {
+
+			Storage._getInstance('amazon');
+
+			var exitMethod = spy(Storage._cache.amazon, '_exit');
+
+			Storage.exit(function () {
+				expect(exitMethod.calledOnce).to.be.true;
+				next();
+			});
+
 		});
 
 	});
