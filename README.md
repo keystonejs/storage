@@ -88,6 +88,22 @@ Storage.add('cloudProvider', {
 });
 ```
 
+### Default instance
+
+In order to specify default instance, you should set up a value for `default instance` by doing the following:
+
+```js
+Storage.settings('default instance', 'cloudProvider');
+```
+
+Now, you can use `Storage` like below:
+
+```js
+Storage.get(function (err, client) {
+
+});
+```
+
 ## Usage
 
 ### Uploading
@@ -236,6 +252,10 @@ process.on('exit', function () {
 	});
 });
 ```
+
+See `examples/mongo.js` for further reference.
+
+Please note that in few cases (MongoDB), not calling that method may make it impossible for your script to exit.
 
 ## Motivation
 
