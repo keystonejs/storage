@@ -11,6 +11,7 @@ Storage.js is a NodeJS library that standardizes common available via `npm` libr
 		- [Available storage providers](#user-content-available-providers)
 		- [Global init](#user-content-global-init)
 		- [Separate init](#user-content-separate-init)
+		- [Default instance](#user-content-default-instance)
 	- [Usage](#user-content-usage)
 		- [Uploading](#user-content-uploading)
 		- [Removing](#user-content-removing)
