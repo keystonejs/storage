@@ -31,20 +31,18 @@ Storage.get('custom', function (err, client) {
 				callback(err);
 			});
 		},
+		function cleanUp(callback) {
+			Storage.exit(callback);
+		}
 	], function (err) {
 		if (err) {
 			console.log('Error - ', err);
 		} else {
 			console.log('Successful');
 		}
-		Storage.exit(function () {
-			console.log('Exited');
-		});
 	});
 
 });
-
-Storage.get('custom', function () {});
 
 
 
