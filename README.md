@@ -11,6 +11,7 @@ Storage.js is a NodeJS library that standardizes common available via `npm` libr
 		- [Available storage providers](#user-content-available-providers)
 		- [Global init](#user-content-global-init)
 		- [Separate init](#user-content-separate-init)
+		- [Default instance](#user-content-default-instance)
 	- [Usage](#user-content-usage)
 		- [Uploading](#user-content-uploading)
 		- [Removing](#user-content-removing)
@@ -85,6 +86,22 @@ Storage.add('cloudProvider', {
 	container: '',
 	key: '',
 	keyId: ''
+});
+```
+
+### Default instance
+
+In order to specify default instance, you should set up a value for `default instance` by doing the following:
+
+```js
+Storage.settings('default instance', 'cloudProvider');
+```
+
+Now, you can use `Storage` like below:
+
+```js
+Storage.get(function (err, client) {
+
 });
 ```
 
@@ -236,6 +253,10 @@ process.on('exit', function () {
 	});
 });
 ```
+
+See `examples/mongo.js` for further reference.
+
+Please note that in few cases (MongoDB), not calling that method may make it impossible for your script to exit.
 
 ## Motivation
 
