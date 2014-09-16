@@ -49,10 +49,10 @@ Before you start, you have to configure available providers by doing one of the 
 | OpenShift | `Storage.Providers.Openshift` | `pkgcloud` | working | |
 | Rackspace | `Storage.Providers.Rackspace` | `pkgcloud` | working | |
 | HP | `Storage.Providers.HP` | `pkgcloud` | working | |
-| Local | `Storage.Providers.LocalSystem` | own, based on `fs` | working | |
+| Local | `Storage.Providers.LocalSystem` | `fs` | working | |
 | MongoDB | `Storage.Providers.MongoDB` | `gfs-grid` | working | |
 | Dropbox | `Storage.Providers.Dropbox` | `dropbox` | working | |
-| Google Drive |  | | planned | |
+| GDrive |  | | planned | |
 
 > More providers will be added upon community requests (feel free to create an issue).
 
