@@ -80,6 +80,13 @@ describe('MongoClient', function () {
 			});
 		});
 
+		it('should return an error when file is not existing', function (next) {
+			dbClient.download('nonExisting.txt', database + '/file.txt', function (err) {
+				expect(err.message).to.match(/not exist/);
+				next();
+			});
+		});
+
 	});
 
 	describe('#remove', function () {
@@ -92,6 +99,13 @@ describe('MongoClient', function () {
 
 		it('should remove file from database', function (next) {
 			dbClient.remove('nestedUpload/license2.md', function (err) {
+				expect(err).to.be.null;
+				next();
+			});
+		});
+
+		it('should return success if file was not present', function (next) {
+			dbClient.remove('nonExisting.txt', function (err) {
 				expect(err).to.be.null;
 				next();
 			});
