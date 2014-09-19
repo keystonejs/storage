@@ -44,15 +44,17 @@ Before you start, you have to configure available providers by doing one of the 
 
 | Provider | Javascript name | Library | Status | Documentation |
 | -------- | --------------- | ------- | ------ | ------ |
-| Azure | `Storage.Providers.Azure` | `pkgcloud` | working | |
+| Azure | `Storage.Providers.Azure` | `pkgcloud` | *developing | |
 | Amazon | `Storage.Providers.AmazonS3` | `pkgcloud` | working | |
 | OpenShift | `Storage.Providers.Openshift` | `pkgcloud` | working | |
 | Rackspace | `Storage.Providers.Rackspace` | `pkgcloud` | working | |
-| HP | `Storage.Providers.HP` | `pkgcloud` | working | |
+| HP | `Storage.Providers.HP` | `pkgcloud` | *developing | |
 | Local | `Storage.Providers.LocalSystem` | `fs` | working | |
 | MongoDB | `Storage.Providers.MongoDB` | `gfs-grid` | working | |
 | Dropbox | `Storage.Providers.Dropbox` | `dropbox` | working | |
 | GDrive |  | | planned | |
+
+**Azure & HP are not returning file url due to development works inside pkgcloud. They will be added soon**
 
 > More providers will be added upon community requests (feel free to create an issue).
 
