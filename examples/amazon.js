@@ -18,11 +18,11 @@ Storage.get('amazon', function (err, client) {
 	if (err) console.log(err);
 
 	// As long as not implemented, will raise an error here
-	client.upload('../LICENSE', 'license.md', function (err) {
+	client.upload('../LICENSE', 'license.md', function (err, data) {
 		if (err) {
 			console.log(err.message);
 		} else {
-			console.log('Uploaded');
+			console.log(data);
 		}
 	});
 
