@@ -23,7 +23,6 @@ Storage.js is a NodeJS library that standardizes common available via `npm` libr
 		- [Modifying parameters](#user-content-modifying-parameters)
 	- [Graceful exits](#user-content-graceful-exits)
 	- [Motivation](#user-content-motivation)
-	- [API Reference](#user-content-api-reference)
 	- [Testing](#user-content-testing)
 	- [About us](#user-content-about-us)
 	- [Thanks](#user-content-thanks)
@@ -43,17 +42,19 @@ Before you start, you have to configure available providers by doing one of the 
 
 ### Available providers
 
-| Provider | Javascript name | Library | Status |
-| -------- | --------------- | ------- | ------ |
-| Azure | `Storage.Providers.Azure` | `pkgcloud` | working |
-| Amazon | `Storage.Providers.AmazonS3` | `pkgcloud` | working |
-| OpenShift | `Storage.Providers.Openshift` | `pkgcloud` | working |
-| Rackspace | `Storage.Providers.Rackspace` | `pkgcloud` | working |
-| HP | `Storage.Providers.HP` | `pkgcloud` | working |
-| Local | `Storage.Providers.LocalSystem` | own, based on `fs` | working |
-| MongoDB | `Storage.Providers.MongoDB` | `gfs-grid` | working |
-| Dropbox | | | planned |
-| Google Drive |  | | planned |
+| Provider | Javascript name | Library | Status | Documentation |
+| -------- | --------------- | ------- | ------ | ------ |
+| Azure | `Storage.Providers.Azure` | `pkgcloud` | *developing | |
+| Amazon | `Storage.Providers.AmazonS3` | `pkgcloud` | working | |
+| OpenShift | `Storage.Providers.Openshift` | `pkgcloud` | working | |
+| Rackspace | `Storage.Providers.Rackspace` | `pkgcloud` | working | |
+| HP | `Storage.Providers.HP` | `pkgcloud` | *developing | |
+| Local | `Storage.Providers.LocalSystem` | `fs` | working | |
+| MongoDB | `Storage.Providers.MongoDB` | `gfs-grid` | working | |
+| Dropbox | `Storage.Providers.Dropbox` | `dropbox` | working | |
+| GDrive |  | | planned | |
+
+**Azure & HP are not returning file url due to development works inside pkgcloud. They will be added soon**
 
 > More providers will be added upon community requests (feel free to create an issue).
 

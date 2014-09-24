@@ -4,7 +4,8 @@
 
 var expect = require('chai').expect,
 	Storage = require('../../lib'),
-	rimraf = require('rimraf');
+	rimraf = require('rimraf'),
+	fs = require('fs');
 
 describe('MongoClient', function () {
 
@@ -25,6 +26,7 @@ describe('MongoClient', function () {
 			dbClient = client;
 			done();
 		});
+		fs.mkdirSync(database);
 	});
 
 	after(function (done) {
@@ -51,13 +53,63 @@ describe('MongoClient', function () {
 
 	describe('#upload', function () {
 
+		it('should upload file and return appropriate callback', function (next) {
+			dbClient.upload('LICENSE', 'nestedUpload/license2.md', function (err, callback) {
+				expect(callback).to.have.property('container', database);
+				expect(callback).to.have.property('path', 'nestedUpload/license2.md');
+				expect(callback).to.have.property('filename', 'license2.md');
+				expect(callback).to.have.property('url', '');
+				next();
+			});
+		});
+
 	});
 
 	describe('#download', function () {
 
+		before(function (done) {
+			dbClient.upload('LICENSE', 'nestedUpload/license2.md', function (err) {
+				done(err);
+			});
+		});
+
+		it('should download file from database and save it', function (next) {
+			dbClient.download('nestedUpload/license2.md', database + '/license.md', function (err) {
+				expect(err).to.be.undefined;
+				next();
+			});
+		});
+
+		it('should return an error when file is not existing', function (next) {
+			dbClient.download('nonExisting.txt', database + '/file.txt', function (err) {
+				expect(err.message).to.match(/not exist/);
+				next();
+			});
+		});
+
 	});
 
 	describe('#remove', function () {
+
+		before(function (done) {
+			dbClient.upload('LICENSE', 'nestedUpload/license2.md', function (err) {
+				done(err);
+			});
+		});
+
+		it('should remove file from database', function (next) {
+			dbClient.remove('nestedUpload/license2.md', function (err) {
+				expect(err).to.be.null;
+				next();
+			});
+		});
+
+		it('should return success if file was not present', function (next) {
+			dbClient.remove('nonExisting.txt', function (err) {
+				expect(err).to.be.null;
+				next();
+			});
+		});
 
 	});
 

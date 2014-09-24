@@ -25,6 +25,7 @@
   "homepage": "https://github.com/grabbou/StorageAPI",
   "dependencies": {
     "async": "^0.9.0",
+    "dropbox": "^0.10.3",
     "fs-extra": "^0.11.0",
     "gridfs-stream": "^0.5.1",
     "hooks": "^0.3.2",
